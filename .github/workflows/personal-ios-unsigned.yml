@@ -1,0 +1,68 @@
+name: Personal iOS (unsigned)
+
+# 个人自用 iOS 包：只做“能编译出未签名 IPA”，不涉及任何证书。
+# 产物用 AltStore / SideStore / Sideloadly 在本机自签名安装。
+# 触发方式：Actions 页面手动运行，或 push 到 personal 分支，或打 p* tag。
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [personal]
+    tags: ['p*']
+
+env:
+  FLUTTER_VERSION: '3.27.3'
+
+jobs:
+  ios-unsigned:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: flutter pub get
+        run: flutter pub get
+
+      - name: Pod install
+        run: |
+          set -euo pipefail
+          cd ios
+          pod install --repo-update
+
+      - name: Build iOS (no codesign)
+        run: |
+          export CI_VERSION='personal'
+          export GIT_COMMIT="${GITHUB_SHA::8}"
+          export BUILD_TIME="$(date +%Y%m%d%H%M)"
+          flutter build ios --release --no-codesign \
+            --dart-define=CI_VERSION="$CI_VERSION" \
+            --dart-define=GIT_COMMIT="$GIT_COMMIT" \
+            --dart-define=BUILD_TIME="$BUILD_TIME"
+
+      - name: Package unsigned IPA
+        run: |
+          set -euo pipefail
+          APP_PATH="build/ios/iphoneos/Runner.app"
+          if [ ! -d "$APP_PATH" ]; then
+            echo "Runner.app 不在 $APP_PATH" >&2
+            ls -la build/ios/iphoneos || true
+            exit 1
+          fi
+          STAMP="$(date +%Y%m%d)"
+          mkdir -p Payload
+          cp -R "$APP_PATH" Payload/
+          /usr/bin/zip -qry "beecount-${STAMP}-unsigned.ipa" Payload
+          ls -la beecount-*-unsigned.ipa
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: beecount-ios-unsigned
+          path: beecount-*-unsigned.ipa
+          if-no-files-found: error
