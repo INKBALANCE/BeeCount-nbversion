@@ -3063,6 +3063,12 @@ class $RecurringTransactionsTable extends RecurringTransactions
       defaultConstraints:
           GeneratedColumn.constraintIsAlways('CHECK ("enabled" IN (0, 1))'),
       defaultValue: const Constant(true));
+  static const VerificationMeta _workdayModeMeta =
+      const VerificationMeta('workdayMode');
+  @override
+  late final GeneratedColumn<String> workdayMode = GeneratedColumn<String>(
+      'workday_mode', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
   static const VerificationMeta _createdAtMeta =
       const VerificationMeta('createdAt');
   @override
@@ -3103,6 +3109,7 @@ class $RecurringTransactionsTable extends RecurringTransactions
         endDate,
         lastGeneratedDate,
         enabled,
+        workdayMode,
         createdAt,
         updatedAt
       ];
@@ -3236,6 +3243,12 @@ class $RecurringTransactionsTable extends RecurringTransactions
       context.handle(_enabledMeta,
           enabled.isAcceptableOrUnknown(data['enabled']!, _enabledMeta));
     }
+    if (data.containsKey('workday_mode')) {
+      context.handle(
+          _workdayModeMeta,
+          workdayMode.isAcceptableOrUnknown(
+              data['workday_mode']!, _workdayModeMeta));
+    }
     if (data.containsKey('created_at')) {
       context.handle(_createdAtMeta,
           createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
@@ -3297,6 +3310,8 @@ class $RecurringTransactionsTable extends RecurringTransactions
           DriftSqlType.dateTime, data['${effectivePrefix}last_generated_date']),
       enabled: attachedDatabase.typeMapping
           .read(DriftSqlType.bool, data['${effectivePrefix}enabled'])!,
+      workdayMode: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}workday_mode']),
       createdAt: attachedDatabase.typeMapping
           .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
       updatedAt: attachedDatabase.typeMapping
@@ -3339,6 +3354,14 @@ class RecurringTransaction extends DataClass
   final DateTime? endDate;
   final DateTime? lastGeneratedDate;
   final bool enabled;
+
+  /// 工作日规则（个人分支 v37）：
+  /// - null / 空串：不处理，与存量规则完全一致
+  /// - `skip`：落在非工作日的那一期直接跳过，日历推进到下一个正常期次
+  /// - `shift`：落在非工作日的那一期顺延到下一个工作日入账
+  ///
+  /// 判定依据见 lib/services/data/workday_calendar.dart（含法定节假日与调休上班日）。
+  final String? workdayMode;
   final DateTime createdAt;
   final DateTime updatedAt;
   const RecurringTransaction(
@@ -3364,6 +3387,7 @@ class RecurringTransaction extends DataClass
       this.endDate,
       this.lastGeneratedDate,
       required this.enabled,
+      this.workdayMode,
       required this.createdAt,
       required this.updatedAt});
   @override
@@ -3419,6 +3443,9 @@ class RecurringTransaction extends DataClass
       map['last_generated_date'] = Variable<DateTime>(lastGeneratedDate);
     }
     map['enabled'] = Variable<bool>(enabled);
+    if (!nullToAbsent || workdayMode != null) {
+      map['workday_mode'] = Variable<String>(workdayMode);
+    }
     map['created_at'] = Variable<DateTime>(createdAt);
     map['updated_at'] = Variable<DateTime>(updatedAt);
     return map;
@@ -3474,6 +3501,9 @@ class RecurringTransaction extends DataClass
           ? const Value.absent()
           : Value(lastGeneratedDate),
       enabled: Value(enabled),
+      workdayMode: workdayMode == null && nullToAbsent
+          ? const Value.absent()
+          : Value(workdayMode),
       createdAt: Value(createdAt),
       updatedAt: Value(updatedAt),
     );
@@ -3508,6 +3538,7 @@ class RecurringTransaction extends DataClass
       lastGeneratedDate:
           serializer.fromJson<DateTime?>(json['lastGeneratedDate']),
       enabled: serializer.fromJson<bool>(json['enabled']),
+      workdayMode: serializer.fromJson<String?>(json['workdayMode']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
       updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
     );
@@ -3538,6 +3569,7 @@ class RecurringTransaction extends DataClass
       'endDate': serializer.toJson<DateTime?>(endDate),
       'lastGeneratedDate': serializer.toJson<DateTime?>(lastGeneratedDate),
       'enabled': serializer.toJson<bool>(enabled),
+      'workdayMode': serializer.toJson<String?>(workdayMode),
       'createdAt': serializer.toJson<DateTime>(createdAt),
       'updatedAt': serializer.toJson<DateTime>(updatedAt),
     };
@@ -3566,6 +3598,7 @@ class RecurringTransaction extends DataClass
           Value<DateTime?> endDate = const Value.absent(),
           Value<DateTime?> lastGeneratedDate = const Value.absent(),
           bool? enabled,
+          Value<String?> workdayMode = const Value.absent(),
           DateTime? createdAt,
           DateTime? updatedAt}) =>
       RecurringTransaction(
@@ -3600,6 +3633,7 @@ class RecurringTransaction extends DataClass
             ? lastGeneratedDate.value
             : this.lastGeneratedDate,
         enabled: enabled ?? this.enabled,
+        workdayMode: workdayMode.present ? workdayMode.value : this.workdayMode,
         createdAt: createdAt ?? this.createdAt,
         updatedAt: updatedAt ?? this.updatedAt,
       );
@@ -3642,6 +3676,8 @@ class RecurringTransaction extends DataClass
           ? data.lastGeneratedDate.value
           : this.lastGeneratedDate,
       enabled: data.enabled.present ? data.enabled.value : this.enabled,
+      workdayMode:
+          data.workdayMode.present ? data.workdayMode.value : this.workdayMode,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
       updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
     );
@@ -3672,6 +3708,7 @@ class RecurringTransaction extends DataClass
           ..write('endDate: $endDate, ')
           ..write('lastGeneratedDate: $lastGeneratedDate, ')
           ..write('enabled: $enabled, ')
+          ..write('workdayMode: $workdayMode, ')
           ..write('createdAt: $createdAt, ')
           ..write('updatedAt: $updatedAt')
           ..write(')'))
@@ -3702,6 +3739,7 @@ class RecurringTransaction extends DataClass
         endDate,
         lastGeneratedDate,
         enabled,
+        workdayMode,
         createdAt,
         updatedAt
       ]);
@@ -3731,6 +3769,7 @@ class RecurringTransaction extends DataClass
           other.endDate == this.endDate &&
           other.lastGeneratedDate == this.lastGeneratedDate &&
           other.enabled == this.enabled &&
+          other.workdayMode == this.workdayMode &&
           other.createdAt == this.createdAt &&
           other.updatedAt == this.updatedAt);
 }
@@ -3759,6 +3798,7 @@ class RecurringTransactionsCompanion
   final Value<DateTime?> endDate;
   final Value<DateTime?> lastGeneratedDate;
   final Value<bool> enabled;
+  final Value<String?> workdayMode;
   final Value<DateTime> createdAt;
   final Value<DateTime> updatedAt;
   const RecurringTransactionsCompanion({
@@ -3784,6 +3824,7 @@ class RecurringTransactionsCompanion
     this.endDate = const Value.absent(),
     this.lastGeneratedDate = const Value.absent(),
     this.enabled = const Value.absent(),
+    this.workdayMode = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.updatedAt = const Value.absent(),
   });
@@ -3810,6 +3851,7 @@ class RecurringTransactionsCompanion
     this.endDate = const Value.absent(),
     this.lastGeneratedDate = const Value.absent(),
     this.enabled = const Value.absent(),
+    this.workdayMode = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.updatedAt = const Value.absent(),
   })  : ledgerId = Value(ledgerId),
@@ -3840,6 +3882,7 @@ class RecurringTransactionsCompanion
     Expression<DateTime>? endDate,
     Expression<DateTime>? lastGeneratedDate,
     Expression<bool>? enabled,
+    Expression<String>? workdayMode,
     Expression<DateTime>? createdAt,
     Expression<DateTime>? updatedAt,
   }) {
@@ -3866,6 +3909,7 @@ class RecurringTransactionsCompanion
       if (endDate != null) 'end_date': endDate,
       if (lastGeneratedDate != null) 'last_generated_date': lastGeneratedDate,
       if (enabled != null) 'enabled': enabled,
+      if (workdayMode != null) 'workday_mode': workdayMode,
       if (createdAt != null) 'created_at': createdAt,
       if (updatedAt != null) 'updated_at': updatedAt,
     });
@@ -3894,6 +3938,7 @@ class RecurringTransactionsCompanion
       Value<DateTime?>? endDate,
       Value<DateTime?>? lastGeneratedDate,
       Value<bool>? enabled,
+      Value<String?>? workdayMode,
       Value<DateTime>? createdAt,
       Value<DateTime>? updatedAt}) {
     return RecurringTransactionsCompanion(
@@ -3919,6 +3964,7 @@ class RecurringTransactionsCompanion
       endDate: endDate ?? this.endDate,
       lastGeneratedDate: lastGeneratedDate ?? this.lastGeneratedDate,
       enabled: enabled ?? this.enabled,
+      workdayMode: workdayMode ?? this.workdayMode,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
     );
@@ -3993,6 +4039,9 @@ class RecurringTransactionsCompanion
     if (enabled.present) {
       map['enabled'] = Variable<bool>(enabled.value);
     }
+    if (workdayMode.present) {
+      map['workday_mode'] = Variable<String>(workdayMode.value);
+    }
     if (createdAt.present) {
       map['created_at'] = Variable<DateTime>(createdAt.value);
     }
@@ -4027,6 +4076,7 @@ class RecurringTransactionsCompanion
           ..write('endDate: $endDate, ')
           ..write('lastGeneratedDate: $lastGeneratedDate, ')
           ..write('enabled: $enabled, ')
+          ..write('workdayMode: $workdayMode, ')
           ..write('createdAt: $createdAt, ')
           ..write('updatedAt: $updatedAt')
           ..write(')'))
@@ -14264,6 +14314,7 @@ typedef $$RecurringTransactionsTableCreateCompanionBuilder
   Value<DateTime?> endDate,
   Value<DateTime?> lastGeneratedDate,
   Value<bool> enabled,
+  Value<String?> workdayMode,
   Value<DateTime> createdAt,
   Value<DateTime> updatedAt,
 });
@@ -14291,6 +14342,7 @@ typedef $$RecurringTransactionsTableUpdateCompanionBuilder
   Value<DateTime?> endDate,
   Value<DateTime?> lastGeneratedDate,
   Value<bool> enabled,
+  Value<String?> workdayMode,
   Value<DateTime> createdAt,
   Value<DateTime> updatedAt,
 });
@@ -14373,6 +14425,9 @@ class $$RecurringTransactionsTableFilterComposer
 
   ColumnFilters<bool> get enabled => $composableBuilder(
       column: $table.enabled, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get workdayMode => $composableBuilder(
+      column: $table.workdayMode, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<DateTime> get createdAt => $composableBuilder(
       column: $table.createdAt, builder: (column) => ColumnFilters(column));
@@ -14461,6 +14516,9 @@ class $$RecurringTransactionsTableOrderingComposer
   ColumnOrderings<bool> get enabled => $composableBuilder(
       column: $table.enabled, builder: (column) => ColumnOrderings(column));
 
+  ColumnOrderings<String> get workdayMode => $composableBuilder(
+      column: $table.workdayMode, builder: (column) => ColumnOrderings(column));
+
   ColumnOrderings<DateTime> get createdAt => $composableBuilder(
       column: $table.createdAt, builder: (column) => ColumnOrderings(column));
 
@@ -14543,6 +14601,9 @@ class $$RecurringTransactionsTableAnnotationComposer
   GeneratedColumn<bool> get enabled =>
       $composableBuilder(column: $table.enabled, builder: (column) => column);
 
+  GeneratedColumn<String> get workdayMode => $composableBuilder(
+      column: $table.workdayMode, builder: (column) => column);
+
   GeneratedColumn<DateTime> get createdAt =>
       $composableBuilder(column: $table.createdAt, builder: (column) => column);
 
@@ -14603,6 +14664,7 @@ class $$RecurringTransactionsTableTableManager extends RootTableManager<
             Value<DateTime?> endDate = const Value.absent(),
             Value<DateTime?> lastGeneratedDate = const Value.absent(),
             Value<bool> enabled = const Value.absent(),
+            Value<String?> workdayMode = const Value.absent(),
             Value<DateTime> createdAt = const Value.absent(),
             Value<DateTime> updatedAt = const Value.absent(),
           }) =>
@@ -14629,6 +14691,7 @@ class $$RecurringTransactionsTableTableManager extends RootTableManager<
             endDate: endDate,
             lastGeneratedDate: lastGeneratedDate,
             enabled: enabled,
+            workdayMode: workdayMode,
             createdAt: createdAt,
             updatedAt: updatedAt,
           ),
@@ -14655,6 +14718,7 @@ class $$RecurringTransactionsTableTableManager extends RootTableManager<
             Value<DateTime?> endDate = const Value.absent(),
             Value<DateTime?> lastGeneratedDate = const Value.absent(),
             Value<bool> enabled = const Value.absent(),
+            Value<String?> workdayMode = const Value.absent(),
             Value<DateTime> createdAt = const Value.absent(),
             Value<DateTime> updatedAt = const Value.absent(),
           }) =>
@@ -14681,6 +14745,7 @@ class $$RecurringTransactionsTableTableManager extends RootTableManager<
             endDate: endDate,
             lastGeneratedDate: lastGeneratedDate,
             enabled: enabled,
+            workdayMode: workdayMode,
             createdAt: createdAt,
             updatedAt: updatedAt,
           ),

@@ -192,6 +192,14 @@ class RecurringTransactions extends Table {
   // 状态
   BoolColumn get enabled => boolean().withDefault(const Constant(true))();
 
+  /// 工作日规则（个人分支 v37）：
+  /// - null / 空串：不处理，与存量规则完全一致
+  /// - `skip`：落在非工作日的那一期直接跳过，日历推进到下一个正常期次
+  /// - `shift`：落在非工作日的那一期顺延到下一个工作日入账
+  ///
+  /// 判定依据见 lib/services/data/workday_calendar.dart（含法定节假日与调休上班日）。
+  TextColumn get workdayMode => text().nullable()();
+
   DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
   DateTimeColumn get updatedAt => dateTime().withDefault(currentDateAndTime)();
 }
@@ -526,7 +534,7 @@ class BeeDatabase extends _$BeeDatabase {
   BeeDatabase.forTesting(QueryExecutor executor) : super(executor);
 
   @override
-  int get schemaVersion => 36; // 自动接管时保留需要人工核对的原因
+  int get schemaVersion => 37; // 自动接管时保留需要人工核对的原因
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -1290,6 +1298,11 @@ class BeeDatabase extends _$BeeDatabase {
           if (from < 36) {
             await _addColumnIfMissing('recurring_transactions', 'cloud_handoff_issue',
                 'ALTER TABLE recurring_transactions ADD COLUMN cloud_handoff_issue TEXT;');
+          }
+          if (from < 37) {
+            // 个人分支：周期记账的工作日规则（skip / shift），默认 NULL 表示不处理
+            await _addColumnIfMissing('recurring_transactions', 'workday_mode',
+                'ALTER TABLE recurring_transactions ADD COLUMN workday_mode TEXT;');
           }
         },
         onCreate: (m) async {

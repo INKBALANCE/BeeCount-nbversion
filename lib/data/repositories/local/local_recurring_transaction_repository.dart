@@ -47,6 +47,7 @@ class LocalRecurringTransactionRepository implements RecurringTransactionReposit
     DateTime? endDate,
     bool enabled = true,
     String? currencyCode,
+    String? workdayMode,
   }) async {
     return await db.into(db.recurringTransactions).insert(
       RecurringTransactionsCompanion.insert(
@@ -66,8 +67,16 @@ class LocalRecurringTransactionRepository implements RecurringTransactionReposit
         endDate: d.Value(endDate == null ? null : _dateOnly(endDate)),
         enabled: d.Value(enabled),
         currencyCode: d.Value(_normalizeCurrency(currencyCode)),
+        workdayMode: d.Value(_normalizeWorkdayMode(workdayMode)),
       ),
     );
+  }
+
+  /// 工作日规则只接受 skip / shift，其它值（含空串）一律按 null（不处理）存储，
+  /// 避免脏数据让引擎走进未定义分支。
+  static String? _normalizeWorkdayMode(String? mode) {
+    if (mode == 'skip' || mode == 'shift') return mode;
+    return null;
   }
 
   static DateTime _dateOnly(DateTime d) => DateTime(d.year, d.month, d.day);
@@ -100,6 +109,7 @@ class LocalRecurringTransactionRepository implements RecurringTransactionReposit
     DateTime? lastGeneratedDate,
     bool updateLastGeneratedDate = false,
     String? currencyCode,
+    String? workdayMode,
   }) async {
     await (db.update(db.recurringTransactions)..where((t) => t.id.equals(id) & t.cloudHandoffKey.isNull()))
         .write(
@@ -125,6 +135,7 @@ class LocalRecurringTransactionRepository implements RecurringTransactionReposit
             : const d.Value.absent(),
         // null 即写 NULL(改回本位币要能清掉旧外币),与本方法其它字段同语义
         currencyCode: d.Value(_normalizeCurrency(currencyCode)),
+        workdayMode: d.Value(_normalizeWorkdayMode(workdayMode)),
         updatedAt: d.Value(DateTime.now()),
       ),
     );

@@ -2433,6 +2433,7 @@ class LocalRepository extends BaseRepository {
     DateTime? endDate,
     bool enabled = true,
     String? currencyCode,
+    String? workdayMode,
   }) =>
       _recurringTransactionRepo.addRecurringTransaction(
         ledgerId: ledgerId,
@@ -2451,6 +2452,7 @@ class LocalRepository extends BaseRepository {
         endDate: endDate,
         enabled: enabled,
         currencyCode: currencyCode,
+        workdayMode: workdayMode,
       );
 
   @override
@@ -2474,6 +2476,7 @@ class LocalRepository extends BaseRepository {
     DateTime? lastGeneratedDate,
     bool updateLastGeneratedDate = false,
     String? currencyCode,
+    String? workdayMode,
   }) =>
       _recurringTransactionRepo.updateRecurringTransaction(
         id: id,
@@ -2495,6 +2498,7 @@ class LocalRepository extends BaseRepository {
         lastGeneratedDate: lastGeneratedDate,
         updateLastGeneratedDate: updateLastGeneratedDate,
         currencyCode: currencyCode,
+        workdayMode: workdayMode,
       );
 
   @override

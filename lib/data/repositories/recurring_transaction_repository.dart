@@ -34,6 +34,7 @@ abstract class RecurringTransactionRepository {
     DateTime? endDate,
     bool enabled = true,
     String? currencyCode,
+    String? workdayMode,
   });
 
   /// 更新周期记账
@@ -60,6 +61,7 @@ abstract class RecurringTransactionRepository {
     DateTime? lastGeneratedDate,
     bool updateLastGeneratedDate = false,
     String? currencyCode,
+    String? workdayMode,
   });
 
   /// 删除周期记账

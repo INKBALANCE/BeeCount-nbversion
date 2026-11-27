@@ -2,6 +2,9 @@ import '../../data/db.dart';
 import '../../data/repositories/base_repository.dart';
 import '../../data/repositories/local/local_repository.dart';
 import '../system/logger_service.dart';
+import 'package:flutter/foundation.dart' show visibleForTesting;
+
+import 'workday_calendar.dart';
 
 /// 重复交易频率枚举
 enum RecurringFrequency {
@@ -22,6 +25,35 @@ enum RecurringFrequency {
 }
 
 /// 纯排期输入参数（同时供数据库实体与编辑页未保存草稿复用）
+/// 周期记账的工作日规则。
+///
+/// 判定依据见 [WorkdayCalendar]（含法定节假日与调休上班日）。
+enum WorkdayMode {
+  /// 不处理，与存量规则行为完全一致（数据库存 NULL）
+  none(null),
+
+  /// 落在非工作日的那一期整期跳过：不记账，日历推进到下一个正常期次。
+  /// 适用「工作日才发生的支出」，如每天地铁通勤。
+  skip('skip'),
+
+  /// 落在非工作日的那一期顺延到下一个工作日入账。
+  /// 适用「日期可变但一定会发生」的支出，如房租、工资。
+  shift('shift');
+
+  const WorkdayMode(this.value);
+
+  /// 数据库中存储的值，null 表示不处理。
+  final String? value;
+
+  static WorkdayMode fromString(String? raw) {
+    if (raw == null || raw.isEmpty) return WorkdayMode.none;
+    for (final mode in WorkdayMode.values) {
+      if (mode.value == raw) return mode;
+    }
+    return WorkdayMode.none;
+  }
+}
+
 class RecurringScheduleSpec {
   const RecurringScheduleSpec({
     required this.frequency,
@@ -33,6 +65,7 @@ class RecurringScheduleSpec {
     this.endDate,
     this.lastGeneratedDate,
     this.enabled = true,
+    this.workdayMode = WorkdayMode.none,
   });
 
   factory RecurringScheduleSpec.fromModel(RecurringTransaction model) {
@@ -46,6 +79,7 @@ class RecurringScheduleSpec {
       endDate: model.endDate,
       lastGeneratedDate: model.lastGeneratedDate,
       enabled: model.enabled,
+      workdayMode: WorkdayMode.fromString(model.workdayMode),
     );
   }
 
@@ -58,6 +92,7 @@ class RecurringScheduleSpec {
   final DateTime? endDate;
   final DateTime? lastGeneratedDate;
   final bool enabled;
+  final WorkdayMode workdayMode;
 
   RecurringScheduleSpec copyWith({
     DateTime? lastGeneratedDate,
@@ -75,6 +110,7 @@ class RecurringScheduleSpec {
           ? lastGeneratedDate
           : this.lastGeneratedDate,
       enabled: enabled,
+      workdayMode: workdayMode,
     );
   }
 }
@@ -86,24 +122,32 @@ class RecurringOccurrencePreview {
     required this.daysFromToday,
     this.nominalDayOfMonth,
     this.adjustedForMonthEnd = false,
+    this.adjustedForWorkday = false,
   });
 
   final DateTime date;
   final int daysFromToday;
   final int? nominalDayOfMonth;
   final bool adjustedForMonthEnd;
+
+  /// 是否因工作日规则被顺延过（UI 用来标注"遇节假日顺延"）。
+  final bool adjustedForWorkday;
 }
 
 class _OccurrenceStep {
   const _OccurrenceStep({
     required this.date,
     this.nominalDay,
+    this.adjustedForWorkday = false,
     this.adjusted = false,
   });
 
   final DateTime date;
   final int? nominalDay;
   final bool adjusted;
+
+  /// 该期是否因为工作日规则被移动过（顺延时为 true）。
+  final bool adjustedForWorkday;
 }
 
 /// 重复交易服务
@@ -112,6 +156,9 @@ class _OccurrenceStep {
 /// 基础 CRUD 操作请使用 RecurringTransactionRepository。
 class RecurringTransactionService {
   static const _tag = 'Recurring';
+
+  /// 预览推演时的上界：不受"今天"限制，只受规则的 endDate 约束。
+  static final DateTime _previewFarFuture = DateTime(9999, 12, 31);
 
   static Future<Set<int>>? _inFlightScan;
   static bool _pendingRescan = false;
@@ -283,7 +330,83 @@ class RecurringTransactionService {
     }
   }
 
+  /// 下一个工作日（从 [from] 起，含当天）。
+  static DateTime _nextWorkday(DateTime from) {
+    var date = dateOnly(from);
+    var guard = 0;
+    while (!WorkdayCalendar.isWorkday(date)) {
+      date = DateTime(date.year, date.month, date.day + 1);
+      if (guard++ > 400) break; // 防御：数据异常时不死循环
+    }
+    return date;
+  }
+
+  /// 在名义期次之上套用工作日规则。
+  ///
+  /// - [upperBound]：允许生成的最晚日期。真实生成时是"今天"，预览推演时是
+  ///   endDate 或无限远。
+  /// - 返回 null 表示当前还不该生成（要么还没到期，要么顺延日尚未到来）。
+  ///
+  /// 两种模式的语义差别很关键，不能混用：
+  /// - shift 顺延：这一期仍然要记账，只是挪到下一个工作日（房租 10/1 → 10/9）
+  /// - skip 跳过：这一期整期丢弃，日历推进到**下一个正常期次**（每月 1 日遇假期
+  ///   就跳过本月，而不是挪到 10/2）
+  static _OccurrenceStep? _applyWorkdayRule(
+    RecurringScheduleSpec spec,
+    _OccurrenceStep step, {
+    required DateTime upperBound,
+    DateTime? endDay,
+  }) {
+    final mode = spec.workdayMode;
+    if (mode == WorkdayMode.none) {
+      return step.date.isAfter(upperBound) ? null : step;
+    }
+
+    if (mode == WorkdayMode.shift) {
+      var date = step.date;
+      var shifted = false;
+      if (!WorkdayCalendar.isWorkday(date)) {
+        date = _nextWorkday(date);
+        shifted = true;
+      }
+      if (endDay != null && date.isAfter(endDay)) return null;
+      if (date.isAfter(upperBound)) return null;
+      return _OccurrenceStep(
+        date: date,
+        nominalDay: step.nominalDay,
+        adjusted: step.adjusted,
+        adjustedForWorkday: shifted,
+      );
+    }
+
+    // skip：整期丢弃，推进到下一个正常期次
+    var cursor = step;
+    var guard = 0;
+    while (!WorkdayCalendar.isWorkday(cursor.date)) {
+      if (cursor.date.isAfter(upperBound)) return null;
+      if (endDay != null && cursor.date.isAfter(endDay)) return null;
+      if (guard++ > 500) return null;
+      cursor = _stepOccurrence(spec, cursor: cursor.date);
+    }
+    if (endDay != null && cursor.date.isAfter(endDay)) return null;
+    if (cursor.date.isAfter(upperBound)) return null;
+    return cursor;
+  }
+
+  /// 计算到期期次（已套用工作日规则）。
   static _OccurrenceStep? _calculateNextDueStep(
+    RecurringScheduleSpec spec, {
+    required DateTime today,
+  }) {
+    final raw = _calculateNextDueStepRaw(spec, today: today);
+    if (raw == null) return null;
+    final endDay = spec.endDate == null ? null : dateOnly(spec.endDate!);
+    return _applyWorkdayRule(spec, raw,
+        upperBound: today, endDay: endDay);
+  }
+
+  /// 名义期次（不含工作日规则）。
+  static _OccurrenceStep? _calculateNextDueStepRaw(
     RecurringScheduleSpec spec, {
     required DateTime today,
   }) {
@@ -375,6 +498,11 @@ class RecurringTransactionService {
           return const [];
         }
       }
+      // 未来期次同样要套工作日规则，否则预览与实际生成不一致
+      final applied = _applyWorkdayRule(spec, firstStep,
+          upperBound: endDay ?? _previewFarFuture, endDay: endDay);
+      if (applied == null) return const [];
+      firstStep = applied;
     }
 
     out.add(RecurringOccurrencePreview(
@@ -382,21 +510,40 @@ class RecurringTransactionService {
       daysFromToday: calendarDaysBetween(firstStep.date, today),
       nominalDayOfMonth: firstStep.nominalDay,
       adjustedForMonthEnd: firstStep.adjusted,
+      adjustedForWorkday: firstStep.adjustedForWorkday,
     ));
 
     var simCursor = firstStep.date;
     while (out.length < count) {
-      final nxt = _stepOccurrence(spec, cursor: simCursor);
+      var nxt = _stepOccurrence(spec, cursor: simCursor);
       if (endDay != null && nxt.date.isAfter(endDay)) break;
+      final applied = _applyWorkdayRule(spec, nxt,
+          upperBound: endDay ?? _previewFarFuture, endDay: endDay);
+      if (applied == null) break;
+      nxt = applied;
       out.add(RecurringOccurrencePreview(
         date: nxt.date,
         daysFromToday: calendarDaysBetween(nxt.date, today),
         nominalDayOfMonth: nxt.nominalDay,
         adjustedForMonthEnd: nxt.adjusted,
+        adjustedForWorkday: nxt.adjustedForWorkday,
       ));
       simCursor = nxt.date;
     }
     return out;
+  }
+
+  /// 计算下一次到期日（纯函数版：直接传 [RecurringScheduleSpec]）。
+  ///
+  /// 与 [calculateNextDate] 同源，区别只是不必先构造数据库模型，方便测试与预览。
+  /// 返回 null 表示当前时刻无需生成（未到期，或顺延日还没到）。
+  @visibleForTesting
+  static DateTime? nextDueDate(
+    RecurringScheduleSpec spec, {
+    DateTime? now,
+  }) {
+    final today = dateOnly(now ?? DateTime.now());
+    return _calculateNextDueStep(spec, today: today)?.date;
   }
 
   /// 计算下一次应该立即生成交易的自然日。返回 null 表示当前时刻无需生成。
