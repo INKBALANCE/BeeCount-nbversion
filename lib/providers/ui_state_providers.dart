@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,6 +18,7 @@ import 'smart_billing_providers.dart';
 import '../data/db.dart';
 import '../utils/month_range.dart';
 import '../services/data/recurring_transaction_service.dart';
+import '../services/data/workday_calendar_sync.dart';
 import '../services/billing/post_processor.dart';
 import '../services/system/logger_service.dart';
 import '../ai/providers/ai_constants.dart';
@@ -237,6 +240,13 @@ final appSplashInitProvider = FutureProvider<void>((ref) async {
     } catch (e) {
       logger.warning(tag, '读取云服务配置失败，继续执行本地周期扫描: $e');
     }
+    if (disposed) return;
+
+    // 工作日规则依赖节假日日历：先把上次缓存装进内存（内置快照兜底），
+    // 再在后台尝试更新。两者都不阻塞启动，失败也不影响本次周期扫描
+    // —— 没有网络时用的就是内置的 2025–2027 快照。
+    await WorkdayCalendarSync.hydrate();
+    unawaited(WorkdayCalendarSync.refreshIfNeeded());
     if (disposed) return;
 
     try {
