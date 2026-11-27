@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 自适应图标前景：水滴 + 人民币符号。
+     108dp 画布，图形画在中间 66dp（安全区 72dp 内），
+     坐标系与 tool/personal/generate_icons.py 共用同一套 100 单位路径。 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:translateX="21"
+        android:translateY="21"
+        android:scaleX="0.66"
+        android:scaleY="0.66">
+        <path
+            android:fillColor="#378ADD"
+            android:pathData="M50 6C50 6 72 34 78 54A30 30 0 1 1 22 54C28 34 50 6 50 6Z" />
+        <path
+            android:pathData="M39 46L50 58M61 46L50 58M50 57L50 78M36 60H64M36 67H64"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="5.6"
+            android:strokeLineCap="butt" />
+    </group>
+</vector>

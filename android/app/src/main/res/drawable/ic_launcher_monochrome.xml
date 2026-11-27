@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 单色图标（Android 13+ 主题图标）：只保留水滴轮廓，由系统着色。
+     符号在单色模式下与水滴同层、无法镂空，故省略。 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:translateX="21"
+        android:translateY="21"
+        android:scaleX="0.66"
+        android:scaleY="0.66">
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M50 6C50 6 72 34 78 54A30 30 0 1 1 22 54C28 34 50 6 50 6Z" />
+    </group>
+</vector>
