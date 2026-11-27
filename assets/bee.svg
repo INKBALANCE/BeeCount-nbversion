@@ -1,14 +1,31 @@
-<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Simple bee icon, clean lines, transparent background -->
-  <circle cx="128" cy="96" r="36" fill="#000000"/>
-  <ellipse cx="128" cy="164" rx="54" ry="40" fill="currentColor"/>
-  <ellipse cx="128" cy="164" rx="54" ry="40" stroke-width="10" stroke="#000" />
-  <path d="M74 164h108" stroke="#000" stroke-width="12" stroke-linecap="round"/>
-  <path d="M86 180h84" stroke="#000" stroke-width="12" stroke-linecap="round"/>
-  <path d="M128 56c0-14 10-26 24-28" stroke="#000" stroke-width="10" stroke-linecap="round"/>
-  <path d="M128 56c0-14-10-26-24-28" stroke="#000" stroke-width="10" stroke-linecap="round"/>
-  <ellipse cx="92" cy="116" rx="28" ry="18" fill="#80DEEA" opacity="0.8"/>
-  <ellipse cx="164" cy="116" rx="28" ry="18" fill="#80DEEA" opacity="0.8"/>
-  <circle cx="116" cy="92" r="6" fill="#fff"/>
-  <circle cx="140" cy="92" r="6" fill="#fff"/>
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <!--
+    记流水账 品牌图形（应用内单色版）
+    ------------------------------------------------
+    与桌面图标同一套 100 单位坐标（见 tool/personal/generate_icons.py）：
+    上尖下圆的水滴 + 人民币符号。
+
+    为什么做成"镂空"而不是直接画白色 ¥：
+      本文件由 lib/pages/shared/branding/bee_artwork.dart 的 BeeIcon 使用，
+      填充色取 currentColor（调用方传主题色）。各位置背景不同（关于页浅灰
+      圆底、首页 header 渐变、分享海报纸白或深色），白色 ¥ 压在浅色主题色
+      上会糊掉。镂空后 ¥ 露出的是背景本身，任何背景 / 亮暗主题 / 任意主题
+      色都成立。
+
+    实现：用 mask 把 ¥ 的笔画挖掉（mask 内白色保留、黑色挖空）。
+    不用 fill-rule="evenodd"：¥ 的笔画彼此相交，even-odd 会让交叠处重新
+    变实心，横竖交接处会冒出色块。
+  -->
+  <defs>
+    <mask id="yuan-cutout" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+      <rect x="0" y="0" width="100" height="100" fill="#ffffff"/>
+      <g stroke="#000000" stroke-width="5.6" stroke-linecap="butt" fill="none">
+        <path d="M39 46L50 58M61 46L50 58"/>
+        <path d="M50 57V78"/>
+        <path d="M36 60H64M36 67H64"/>
+      </g>
+    </mask>
+  </defs>
+  <path d="M50 6C50 6 72 34 78 54A30 30 0 1 1 22 54C28 34 50 6 50 6Z"
+        fill="currentColor" mask="url(#yuan-cutout)"/>
 </svg>

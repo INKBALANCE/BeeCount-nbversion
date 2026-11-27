@@ -9,36 +9,16 @@ class BeeIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    final svg = SvgPicture.asset(
+    // 图形本身是单色的（水滴填充 currentColor，¥ 为镂空），
+    // 亮/暗主题都能直接落在背景上，不需要额外垫底色。
+    // 旧版此处会在暗色模式垫一层白色半透明圆，那是为了让蜜蜂的黑色描边
+    // 可见；换成水滴后黑色描边不存在了，垫圈只会多出一圈白色光晕，故移除。
+    return SvgPicture.asset(
       'assets/bee.svg',
       width: size,
       height: size,
       theme: SvgTheme(
         currentColor: color, // 核心：模拟 CSS 的 currentColor
-      ),
-    );
-
-    if (!isDark) return svg;
-
-    // 暗黑模式：在蜜蜂图标后面加浅色圆形遮罩，让黑色边框可见
-    return SizedBox(
-      width: size,
-      height: size,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Container(
-            width: size * 1.1,
-            height: size * 1.1,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white.withValues(alpha: 0.15),
-            ),
-          ),
-          svg,
-        ],
       ),
     );
   }
