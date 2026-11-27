@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers.dart';
+import '../../../../personal/personal_flags.dart';
 import '../../help_center_page.dart';
 import '../../log_center_page.dart';
 import '../../privacy_policy_page.dart';
@@ -106,36 +107,43 @@ class _SupportAboutControlsState extends ConsumerState<SupportAboutControls> {
         subtitle: l.aboutPageSubtitle,
         body: BeePageBody(eager: true, children: [
           BeeSupportBrand(
-              logo: BeeIcon(color: primary, size: 80),
-              title: l.appName,
-              version: version ??
-                  (versionFailed ? l.commonError : l.aboutPageLoadingVersion),
-              onStory: _story,
-              description: l.v4SharePosterOpenSourceBody,
-              tag: '${l.appPromoTagOpenSource} · ${l.appPromoTagFree}',
-              sourceLabel: l.v4SharePosterOpenSourceAction,
-              recommendLabel: l.v4SharePosterRecommend,
-              onSource: () => open('https://github.com/TNT-Likely/BeeCount'),
-              onRecommend: () => showDialog<void>(
-                  context: context,
-                  builder: (_) => const ShareCardDialog(type: 'app')),
-              socials: [
-                social(l.aboutWebsite, 'website', WebsiteUrls.home(locale)),
-                social('GitHub', 'github',
-                    'https://github.com/TNT-Likely/BeeCount',
-                    asset: 'assets/icons/social/github.svg'),
-                if (!simplified)
-                  social(l.aboutTelegram, 'telegram', 'https://t.me/beecount',
-                      asset: 'assets/icons/social/telegram.svg'),
-                social(l.aboutXiaohongshu, 'xiaohongshu',
-                    'https://xhslink.com/m/8K1ekg7EFOq',
-                    asset: 'assets/icons/social/xiaohongshu.svg'),
-                social(l.aboutDouyin, 'douyin',
-                    'https://v.douyin.com/YG7tUweYYyQ/',
-                    asset: 'assets/icons/social/douyin.svg'),
-              ]),
+            logo: BeeIcon(color: primary, size: 80),
+            title: l.appName,
+            version: version ??
+                (versionFailed ? l.commonError : l.aboutPageLoadingVersion),
+            onStory: _story,
+            description: l.v4SharePosterOpenSourceBody,
+            tag: '${l.appPromoTagOpenSource} · ${l.appPromoTagFree}',
+            sourceLabel: l.v4SharePosterOpenSourceAction,
+            recommendLabel: l.v4SharePosterRecommend,
+            onSource: () =>
+                open('https://github.com/INKBALANCE/BeeCount-nbversion'),
+            onRecommend: () => showDialog<void>(
+                context: context,
+                builder: (_) => const ShareCardDialog(type: 'app')),
+            socials: PersonalFlags.communityLinks
+                ? [
+                    social(l.aboutWebsite, 'website', WebsiteUrls.home(locale)),
+                    social('GitHub', 'github',
+                        'https://github.com/TNT-Likely/BeeCount',
+                        asset: 'assets/icons/social/github.svg'),
+                    if (!simplified)
+                      social(
+                          l.aboutTelegram, 'telegram', 'https://t.me/beecount',
+                          asset: 'assets/icons/social/telegram.svg'),
+                    social(l.aboutXiaohongshu, 'xiaohongshu',
+                        'https://xhslink.com/m/8K1ekg7EFOq',
+                        asset: 'assets/icons/social/xiaohongshu.svg'),
+                    social(l.aboutDouyin, 'douyin',
+                        'https://v.douyin.com/YG7tUweYYyQ/',
+                        asset: 'assets/icons/social/douyin.svg'),
+                  ]
+                : const [],
+          ),
           BeeSupportActions(actions: [
-            if (!platform.isIOS && !platform.isGooglePlay)
+            if (PersonalFlags.updateCheck &&
+                !platform.isIOS &&
+                !platform.isGooglePlay)
               BeeSupportAction(
                   key: const ValueKey('support-update'),
                   title: loading
@@ -173,21 +181,23 @@ class _SupportAboutControlsState extends ConsumerState<SupportAboutControls> {
                                       ? UpdateProgress.idle()
                                       : UpdateProgress.active(value, status));
                         }),
-            BeeSupportAction(
-                key: const ValueKey('support-development'),
-                title: l.aboutSupportDevelopment,
-                subtitle: l.aboutSupportDevelopmentSubtitle,
-                leading: const BeeLineIcon('Heart'),
-                onTap: () => open(locale.languageCode == 'zh'
-                    ? 'https://github.com/TNT-Likely/BeeCount/blob/main/docs/donate/README_ZH.md'
-                    : 'https://github.com/TNT-Likely/BeeCount/blob/main/docs/donate/README_EN.md')),
-            BeeSupportAction(
-                key: const ValueKey('support-feedback'),
-                title: l.mineFeedback,
-                subtitle: l.mineFeedbackSubtitle,
-                leading: const BeeLineIcon('MessageSquare'),
-                onTap: () =>
-                    open('https://github.com/TNT-Likely/BeeCount/issues')),
+            if (PersonalFlags.donationAndPromo)
+              BeeSupportAction(
+                  key: const ValueKey('support-development'),
+                  title: l.aboutSupportDevelopment,
+                  subtitle: l.aboutSupportDevelopmentSubtitle,
+                  leading: const BeeLineIcon('Heart'),
+                  onTap: () => open(locale.languageCode == 'zh'
+                      ? 'https://github.com/TNT-Likely/BeeCount/blob/main/docs/donate/README_ZH.md'
+                      : 'https://github.com/TNT-Likely/BeeCount/blob/main/docs/donate/README_EN.md')),
+            if (PersonalFlags.communityLinks)
+              BeeSupportAction(
+                  key: const ValueKey('support-feedback'),
+                  title: l.mineFeedback,
+                  subtitle: l.mineFeedbackSubtitle,
+                  leading: const BeeLineIcon('MessageSquare'),
+                  onTap: () =>
+                      open('https://github.com/TNT-Likely/BeeCount/issues')),
             BeeSupportAction(
                 key: const ValueKey('support-logs'),
                 title: l.logCenterTitle,
@@ -204,22 +214,24 @@ class _SupportAboutControlsState extends ConsumerState<SupportAboutControls> {
                   leading: const BeeLineIcon('PanelsTopLeft'),
                   onTap: () => _page(const ComponentGalleryPage()))
             ]),
-          BeeSectionLabel(l.aboutRelatedProducts),
-          for (final product in products)
-            BeePromotionCard(
-                key: ValueKey('support-product-${product.$1.appStoreId}'),
-                info: BeePromotionData(
-                    logoAsset: product.$1.logoAsset,
-                    title: product.$1.title,
-                    subtitle: product.$1.subtitle,
-                    introBody: product.$1.introBody,
-                    brandColor: product.$1.brandColor,
-                    contactEmail: product.$1.contactEmail,
-                    screenshotAssets: product.$1.screenshotAssets,
-                    visual: product.$1.visual),
-                detailsLabel: l.aboutProductDetails,
-                onOpen: () =>
-                    platform.product(context, product.$1, product.$2)),
+          if (PersonalFlags.communityLinks) ...[
+            BeeSectionLabel(l.aboutRelatedProducts),
+            for (final product in products)
+              BeePromotionCard(
+                  key: ValueKey('support-product-${product.$1.appStoreId}'),
+                  info: BeePromotionData(
+                      logoAsset: product.$1.logoAsset,
+                      title: product.$1.title,
+                      subtitle: product.$1.subtitle,
+                      introBody: product.$1.introBody,
+                      brandColor: product.$1.brandColor,
+                      contactEmail: product.$1.contactEmail,
+                      screenshotAssets: product.$1.screenshotAssets,
+                      visual: product.$1.visual),
+                  detailsLabel: l.aboutProductDetails,
+                  onOpen: () =>
+                      platform.product(context, product.$1, product.$2)),
+          ],
           Wrap(alignment: WrapAlignment.center, spacing: 8, children: [
             TextButton(
                 key: const ValueKey('support-changelog'),
@@ -234,7 +246,7 @@ class _SupportAboutControlsState extends ConsumerState<SupportAboutControls> {
                 onPressed: () => _page(const PrivacyPolicyPage()),
                 child: Text(l.aboutPrivacyPolicy))
           ]),
-          if (simplified)
+          if (PersonalFlags.communityLinks && simplified)
             Text('浙ICP备2025214907号-2A',
                 textAlign: TextAlign.center,
                 style: TextStyle(

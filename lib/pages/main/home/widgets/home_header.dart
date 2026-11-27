@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../settings/personalize_page.dart' show headerStyleProvider;
 import '../../../../providers.dart';
+import '../../../../personal/personal_flags.dart';
 import '../../../shared/branding/bee_artwork.dart';
 import '../../../shared/appearance/primary_header.dart';
 import 'home_overview.dart';
@@ -114,7 +115,7 @@ class HomeHeaderBinding extends ConsumerWidget {
             onMonthTap: onMonth,
             onLedgerTap: onLedger,
             actions: [
-              if (ai)
+              if (PersonalFlags.aiAssistant && ai)
                 Tooltip(
                     message: l.aiChatTitle,
                     child: TextButton.icon(

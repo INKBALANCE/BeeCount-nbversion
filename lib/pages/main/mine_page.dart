@@ -20,6 +20,7 @@ import '../settings/automation_page.dart';
 import '../settings/about_page.dart';
 import '../report/annual_report_page.dart';
 import '../donation/donation_page.dart';
+import '../../personal/personal_flags.dart';
 
 class MinePage extends ConsumerWidget {
   const MinePage({super.key});
@@ -76,10 +77,12 @@ class MinePage extends ConsumerWidget {
                       17, 0, 17, MediaQuery.paddingOf(context).bottom + 16),
                   children: [
                 const MineProfileBinding(),
-                group(l.v4MineCloudGroup, [const MineCloudBinding()]),
+                if (PersonalFlags.cloudSync)
+                  group(l.v4MineCloudGroup, [const MineCloudBinding()]),
                 group(l.v4MineFeaturesGroup, [
-                  row(l.smartBilling, l.smartBillingDesc, 'Sparkles',
-                      () => open(const SmartBillingPage())),
+                  if (PersonalFlags.aiAssistant)
+                    row(l.smartBilling, l.smartBillingDesc, 'Sparkles',
+                        () => open(const SmartBillingPage())),
                   row(l.dataManagement, l.dataManagementDesc, 'Database',
                       () => open(const DataManagementPage())),
                   row(l.automation, l.automationDesc, 'Clock',
@@ -101,14 +104,15 @@ class MinePage extends ConsumerWidget {
                   })
                 ]),
                 group(l.v4MineSupportGroup, [
-                  if (Platform.isIOS)
+                  if (PersonalFlags.donationAndPromo && Platform.isIOS)
                     row(l.donationTitle, l.donationEntrySubtitle, 'Heart',
                         () => open(const DonationPage())),
-                  row(
-                      l.mineSupportAuthor,
-                      l.mineSupportAuthorSubtitle(stars.toString()),
-                      'Star',
-                      () => showMineGitHubStarGuide(context)),
+                  if (PersonalFlags.donationAndPromo)
+                    row(
+                        l.mineSupportAuthor,
+                        l.mineSupportAuthorSubtitle(stars.toString()),
+                        'Star',
+                        () => showMineGitHubStarGuide(context)),
                   row(
                       l.annualReportTitle,
                       l.annualReportEntrySubtitle,
@@ -120,16 +124,17 @@ class MinePage extends ConsumerWidget {
                       'Share2',
                       () => SharePosterService.showPosterCarouselPreview(
                           context)),
-                  row(l.mineCopyPromoText, l.mineCopyPromoSubtitle, 'Copy',
-                      () async {
-                    await Clipboard.setData(
-                        ClipboardData(text: l.shareGuidanceCopyText));
-                    if (context.mounted) {
-                      showBeeToast(context, l.shareGuidanceCopied,
-                          tone: BeeTone.success);
-                    }
-                  }),
-                  if (Platform.isIOS)
+                  if (PersonalFlags.communityLinks)
+                    row(l.mineCopyPromoText, l.mineCopyPromoSubtitle, 'Copy',
+                        () async {
+                      await Clipboard.setData(
+                          ClipboardData(text: l.shareGuidanceCopyText));
+                      if (context.mounted) {
+                        showBeeToast(context, l.shareGuidanceCopied,
+                            tone: BeeTone.success);
+                      }
+                    }),
+                  if (PersonalFlags.donationAndPromo && Platform.isIOS)
                     row(l.mineRateApp, l.mineRateAppSubtitle, 'Star',
                         () => rateMineApp(context)),
                 ])
