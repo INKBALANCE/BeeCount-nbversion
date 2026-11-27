@@ -25,9 +25,10 @@ class PersonalFlags {
   /// 姐妹产品推荐位。个人自用版保留它们只会误导。
   static const bool communityLinks = false;
 
-  /// 检查更新。
-  /// 【当前必须为 false】：更新检查写死查询官方仓库 Releases，返回的是官方
-  /// 签名包，与本应用的 applicationId / 签名都不一致，下载后必然安装失败。
-  /// 待改成指向本仓库 Releases 后再打开。
-  static const bool updateCheck = false;
+  /// 检查更新。已改为查询本仓库 Releases（见 lib/personal/repo_config.dart），
+  /// 由 .github/workflows/personal-release.yml 自动发布 tag 与 APK。
+  ///
+  /// 注意：Android 上第三方应用无法静默安装，每次更新都会走系统安装器并弹出
+  /// 确认框，需要用户先授予"安装未知应用"权限。
+  static const bool updateCheck = true;
 }

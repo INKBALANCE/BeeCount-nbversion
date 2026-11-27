@@ -1,0 +1,153 @@
+name: Personal Release
+
+# 个人自用发版：构建 → 打 tag → 建 GitHub Release → 上传 APK。
+# Release 一旦发布，App 内的"检查更新"就能查到它并直接下载安装。
+#
+# 版本号来源：仓库里的 pubspec.yaml（version: 1.0.1+10001）
+# tag 规则：v<版本名>，如 v1.0.1
+# asset 命名必须匹配 lib/services/update/update_checker.dart 的 _pickApkUrl：
+#   beecount-<版本>.apk            ← 主包(arm64-v8a)，99% 真机走这个
+#   beecount-<版本>-universal.apk  ← 兜底
+#   beecount-<版本>-armeabi-v7a.apk / -x86_64.apk  ← 特殊设备
+
+on:
+  workflow_dispatch:
+    inputs:
+      notes:
+        description: '更新说明（留空则自动生成）'
+        required: false
+        type: string
+      dry_run:
+        description: '仅构建不上传 Release'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+env:
+  FLUTTER_VERSION: '3.27.3'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read version from pubspec
+        id: ver
+        run: |
+          set -euo pipefail
+          RAW=$(grep '^version:' pubspec.yaml | awk '{print $2}')
+          NAME="${RAW%%+*}"
+          CODE="${RAW##*+}"
+          if [ "$NAME" = "$CODE" ]; then CODE=0; fi
+          echo "name=$NAME" >> "$GITHUB_OUTPUT"
+          echo "code=$CODE" >> "$GITHUB_OUTPUT"
+          echo "版本名=$NAME 构建号=$CODE"
+
+      - name: Guard against duplicate tag
+        run: |
+          set -euo pipefail
+          if git ls-remote --tags origin "refs/tags/v${{ steps.ver.outputs.name }}" | grep -q .; then
+            echo "::error::tag v${{ steps.ver.outputs.name }} 已存在，请先递增 pubspec.yaml 的版本号"
+            exit 1
+          fi
+
+      - name: Setup Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v4
+
+      - name: Install SDK components
+        run: sdkmanager --install "platform-tools" "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: flutter pub get
+        run: flutter pub get
+
+      - name: Configure signing
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          if [ -z "${ANDROID_KEYSTORE_BASE64:-}" ]; then
+            echo "::error::缺少 ANDROID_KEYSTORE_BASE64，发版必须使用你自己的 keystore"
+            exit 1
+          fi
+          echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > android/app/ci-release.keystore
+          {
+            echo "storeFile=ci-release.keystore"
+            echo "storePassword=${ANDROID_KEYSTORE_PASSWORD}"
+            echo "keyAlias=${ANDROID_KEY_ALIAS}"
+            echo "keyPassword=${ANDROID_KEY_PASSWORD}"
+          } > android/key.properties
+
+      - name: Build APKs
+        run: |
+          export CI_VERSION='${{ steps.ver.outputs.name }}'
+          export GIT_COMMIT="${GITHUB_SHA::8}"
+          export BUILD_TIME="$(date +%Y%m%d%H%M)"
+          flutter build apk --release --flavor prod \
+            --dart-define=CI_VERSION="$CI_VERSION" \
+            --dart-define=GIT_COMMIT="$GIT_COMMIT" \
+            --dart-define=BUILD_TIME="$BUILD_TIME"
+
+      - name: Rename assets for in-app updater
+        id: pack
+        run: |
+          set -euo pipefail
+          V="${{ steps.ver.outputs.name }}"
+          SRC=build/app/outputs/flutter-apk
+          OUT=release-assets
+          mkdir -p "$OUT"
+          # 主包必须是 arm64-v8a：代码按 beecount-<版本>.apk 精确取名
+          cp "$SRC/app-arm64-v8a-prod-release.apk" "$OUT/beecount-$V.apk"
+          cp "$SRC/app-prod-release.apk"           "$OUT/beecount-$V-universal.apk"
+          cp "$SRC/app-armeabi-v7a-prod-release.apk" "$OUT/beecount-$V-armeabi-v7a.apk"
+          cp "$SRC/app-x86_64-prod-release.apk"    "$OUT/beecount-$V-x86_64.apk"
+          ls -lh "$OUT"
+          # 校验：主包签名必须是自己 keystore 的指纹
+          "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --print-certs \
+            "$OUT/beecount-$V.apk" | grep -i "SHA-256 digest" || true
+
+      - name: Create GitHub Release
+        if: ${{ inputs.dry_run != true }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NOTES: ${{ inputs.notes }}
+        run: |
+          set -euo pipefail
+          V="${{ steps.ver.outputs.name }}"
+          if [ -n "${NOTES:-}" ]; then
+            printf '%s\n' "$NOTES" > /tmp/notes.md
+            NOTES_ARG=(--notes-file /tmp/notes.md)
+          else
+            NOTES_ARG=(--generate-notes)
+          fi
+          gh release create "v$V" release-assets/*.apk \
+            --target "$GITHUB_SHA" \
+            --title "记流水账 $V" \
+            "${NOTES_ARG[@]}"
+
+      - name: Upload build artifacts
+        if: ${{ inputs.dry_run == true }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-assets
+          path: release-assets/*.apk
+          if-no-files-found: error

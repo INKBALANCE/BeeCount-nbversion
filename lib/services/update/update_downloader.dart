@@ -8,6 +8,7 @@ import '../../l10n/app_localizations.dart';
 import 'update_result.dart';
 import 'update_notifications.dart';
 import 'github_mirror_service.dart';
+import '../../personal/repo_config.dart';
 
 /// 更新下载管理类
 class UpdateDownloader {
@@ -149,7 +150,7 @@ class UpdateDownloader {
             'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
             'Cache-Control': 'no-cache',
             'Pragma': 'no-cache',
-            'Referer': 'https://github.com/TNT-Likely/BeeCount/releases',
+            'Referer': RepoConfig.releasesPage,
           },
         ),
         onReceiveProgress: (received, total) {

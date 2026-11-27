@@ -5,6 +5,7 @@ import '../../pages/shared/dialogs/app_dialogs.dart';
 import '../../styles/tokens.dart';
 import '../system/logger_service.dart';
 import 'github_mirror_service.dart';
+import '../../personal/repo_config.dart';
 
 /// 更新对话框管理类
 class UpdateDialogs {
@@ -240,7 +241,7 @@ class UpdateDialogs {
 
   /// 启动GitHub Releases页面
   static Future<void> launchGitHubReleases(BuildContext context) async {
-    const url = 'https://github.com/TNT-Likely/BeeCount/releases';
+    const url = RepoConfig.releasesPage;
     try {
       if (await canLaunchUrl(Uri.parse(url))) {
         await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
