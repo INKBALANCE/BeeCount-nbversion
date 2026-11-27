@@ -2,12 +2,12 @@ name: Personal iOS (unsigned)
 
 # 个人自用 iOS 包：只做“能编译出未签名 IPA”，不涉及任何证书。
 # 产物用 AltStore / SideStore / Sideloadly 在本机自签名安装。
-# 触发方式：Actions 页面手动运行，或 push 到 personal 分支，或打 p* tag。
+# 触发方式：Actions 页面手动运行，或 push 到 1.0.0 分支，或打 v* tag（与 Android 发版同步）。
 
 on:
   workflow_dispatch:
   push:
-    branches: [personal]
+    branches: [1.0.0]
     tags: ['p*']
 
 env:
