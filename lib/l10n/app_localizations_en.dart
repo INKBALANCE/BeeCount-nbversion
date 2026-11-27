@@ -207,7 +207,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aiConsentTitle => 'Before enabling AI features';
 
   @override
-  String get aiConsentBody => 'AI features need to send related data to the third-party AI provider you configure:\n\n• Who it goes to: by default Zhipu GLM (open.bigmodel.cn, operated by Zhipu); if you configure another third-party AI service, it goes to the provider you entered.\n• What is sent: the content you actively use for recognition/chat — receipt images, voice recordings, text you type, plus the category names, account names and relevant transaction records needed to complete recognition/analysis.\n• Purpose: only for bill recognition, bookkeeping and chats you initiate; BeeCount itself does not collect or store this data.\n\nThe data is processed by that third-party provider under its own privacy policy. Enabling means you consent to the data sharing above.';
+  String get aiConsentBody => 'AI features need to send related data to the third-party AI provider you configure:\n\n• Who it goes to: by default Zhipu GLM (open.bigmodel.cn, operated by Zhipu); if you configure another third-party AI service, it goes to the provider you entered.\n• What is sent: the content you actively use for recognition/chat — receipt images, voice recordings, text you type, plus the category names, account names and relevant transaction records needed to complete recognition/analysis.\n• Purpose: only for bill recognition, bookkeeping and chats you initiate; WaterBook itself does not collect or store this data.\n\nThe data is processed by that third-party provider under its own privacy policy. Enabling means you consent to the data sharing above.';
 
   @override
   String get aiConsentAgree => 'Agree & enable';
@@ -332,7 +332,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get voiceRecordingPermissionDeniedTitle => 'Microphone Permission Required';
 
   @override
-  String get voiceRecordingPermissionDeniedMessage => 'Voice billing requires microphone permission. Please allow BeeCount to access the microphone in System Settings.';
+  String get voiceRecordingPermissionDeniedMessage => 'Voice billing requires microphone permission. Please allow WaterBook to access the microphone in System Settings.';
 
   @override
   String voiceRecordingStartFailed(String error) {
@@ -1571,7 +1571,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mineShareApp => 'Share App';
 
   @override
-  String get mineShareWithFriends => 'Share BeeCount with friends';
+  String get mineShareWithFriends => 'Share WaterBook with friends';
 
   @override
   String get mineCopyPromoText => 'Copy Promo Text';
@@ -1583,7 +1583,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mineShareGenerating => 'Generating share poster...';
 
   @override
-  String get sharePosterAppName => 'BeeCount';
+  String get sharePosterAppName => 'WaterBook';
 
   @override
   String get sharePosterSlogan => 'Smart Accounting, Beautiful Life';
@@ -1660,7 +1660,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sharePosterSaveSuccess => 'Saved to gallery';
 
   @override
-  String get shareGuidanceCopyText => 'Track my expenses with BeeCount - open source, free & ad-free! 🐝 Download: https://github.com/TNT-Likely/BeeCount';
+  String get shareGuidanceCopyText => 'Track expenses with WaterBook. All data stays on your device.';
 
   @override
   String get shareGuidanceCopied => 'Text copied';
@@ -2218,7 +2218,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get categoryShareSubject => 'BeeCount Category Configuration';
+  String get categoryShareSubject => 'WaterBook Category Configuration';
 
   @override
   String get categoryShareFailed => 'Share failed';
@@ -2927,7 +2927,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cloudWebdavPasswordLabel => 'Password';
 
   @override
-  String get cloudWebdavPathHint => '/BeeCount';
+  String get cloudWebdavPathHint => '/WaterBook';
 
   @override
   String get cloudS3EndpointLabel => 'Endpoint';
@@ -3085,7 +3085,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exportCsvHeaderAttachments => 'Attachments';
 
   @override
-  String get exportShareText => 'BeeCount Export File';
+  String get exportShareText => 'WaterBook Export File';
 
   @override
   String get exportSuccessTitle => 'Export Successful';
@@ -3317,7 +3317,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateCannotOpenLink => 'Cannot open link';
 
   @override
-  String get updateManualVisit => 'Please manually visit in browser:\\nhttps://github.com/TNT-Likely/BeeCount/releases';
+  String get updateManualVisit => 'This is a personal build. Download the latest APK from your own repository Actions page.';
 
   @override
   String get updateNoLocalApkTitle => 'No Update Package Found';
@@ -3482,7 +3482,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateNotificationGuideStep1 => 'Go to System Settings > App Management';
 
   @override
-  String get updateNotificationGuideStep2 => 'Find \\\"BeeCount\\\" app';
+  String get updateNotificationGuideStep2 => 'Find \\\"WaterBook\\\" app';
 
   @override
   String get updateNotificationGuideStep3 => 'Enable notification permissions';
@@ -3757,13 +3757,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cloudCustomS3Subtitle => 'AWS S3 / Cloudflare R2 / MinIO';
 
   @override
-  String get cloudBeeCountCloudTitle => 'BeeCount Cloud';
+  String get cloudBeeCountCloudTitle => 'WaterBook Cloud';
 
   @override
   String get cloudBeeCountCloudSubtitle => 'Self-hosted · Incremental sync · Multi-device';
 
   @override
-  String get cloudConfigureBeeCountCloudTitle => 'Configure BeeCount Cloud';
+  String get cloudConfigureBeeCountCloudTitle => 'Configure WaterBook Cloud';
 
   @override
   String get cloudBeeCountCloudUrlLabel => 'Server URL';
@@ -4323,7 +4323,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updateCorruptedFileMessage => 'The previously downloaded installation package is incomplete or corrupted. Delete and re-download?';
 
   @override
-  String get welcomeTitle => 'Welcome to BeeCount';
+  String get welcomeTitle => 'Welcome to WaterBook';
 
   @override
   String get welcomeDescription => 'An accounting app that truly respects your privacy';
@@ -4353,13 +4353,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get welcomeCloudSyncTitle => 'Optional Cloud Sync';
 
   @override
-  String get welcomeCloudSyncDescription => 'BeeCount supports multiple sync methods - your data, your control';
+  String get welcomeCloudSyncDescription => 'WaterBook supports multiple sync methods - your data, your control';
 
   @override
   String get welcomeCloudSyncFeature1 => 'Completely offline usage, no cloud needed';
 
   @override
-  String get welcomeCloudSyncFeature2 => 'BeeCount Cloud self-hosted (real-time multi-device + Web UI)';
+  String get welcomeCloudSyncFeature2 => 'WaterBook Cloud self-hosted (real-time multi-device + Web UI)';
 
   @override
   String get welcomeCloudSyncFeature3 => 'Or pick iCloud / WebDAV / Supabase / S3';
@@ -4437,7 +4437,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get iosWidgetStep2 => 'Tap the \"+\" button in upper left corner';
 
   @override
-  String get iosWidgetStep3 => 'Search and select \"BeeCount\"';
+  String get iosWidgetStep3 => 'Search and select \"WaterBook\"';
 
   @override
   String get iosWidgetStep4 => 'Select medium widget and add to home screen';
@@ -4449,7 +4449,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get androidWidgetStep2 => 'Select \"Widgets\"';
 
   @override
-  String get androidWidgetStep3 => 'Find and long press \"BeeCount\" widget';
+  String get androidWidgetStep3 => 'Find and long press \"WaterBook\" widget';
 
   @override
   String get androidWidgetStep4 => 'Drag to suitable position on home screen';
@@ -4467,7 +4467,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get widgetQuickEntryDesc => 'Tap the left side of the widget to quickly add an expense, or tap the right side to add an income. You can also use beecount://new?type=transfer via Shortcuts to quickly start a transfer.';
 
   @override
-  String get appName => 'BeeCount';
+  String get appName => 'WaterBook';
 
   @override
   String get monthSuffix => '';
@@ -4551,10 +4551,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get iosAutoShortcutStep2 => 'Add \"Take Screenshot\" action';
 
   @override
-  String get iosAutoShortcutStep3 => 'Search and add \"BeeCount - Auto Billing\" action';
+  String get iosAutoShortcutStep3 => 'Search and add \"WaterBook - Auto Billing\" action';
 
   @override
-  String get iosAutoShortcutStep4 => 'Set the screenshot parameter of \"BeeCount\" to the previous \"Screenshot\"';
+  String get iosAutoShortcutStep4 => 'Set the screenshot parameter of \"WaterBook\" to the previous \"Screenshot\"';
 
   @override
   String get iosAutoShortcutStep5 => '(Optional) Go to Settings > Accessibility > Touch > Back Tap, bind this shortcut';
@@ -4827,25 +4827,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cloudTutorialTitle => 'Getting Started';
 
   @override
-  String get cloudTutorialIntro => 'BeeCount Cloud is a self-hosted sync server that supports real-time multi-device collaboration. The flow is simple:';
+  String get cloudTutorialIntro => 'WaterBook Cloud is a self-hosted sync server that supports real-time multi-device collaboration. The flow is simple:';
 
   @override
   String get cloudTutorialStep1Title => 'Step 1: Deploy or join a server';
 
   @override
-  String get cloudTutorialStep1Desc => 'Self-host with one Docker command (see the Docker guide in GitHub README). Or join an existing BeeCount Cloud server run by a friend / team.';
+  String get cloudTutorialStep1Desc => 'Self-host with one Docker command (see the Docker guide in GitHub README). Or join an existing WaterBook Cloud server run by a friend / team.';
 
   @override
   String get cloudTutorialStep2Title => 'Step 2: Get an account';
 
   @override
-  String get cloudTutorialStep2Desc => 'BeeCount Cloud does NOT offer self-registration (to prevent abuse on public servers). If you self-host: the first Docker boot prints a random admin email + password to the logs — use that. Joining someone else\'s server: ask the admin to create an account for you in Web → Users.';
+  String get cloudTutorialStep2Desc => 'WaterBook Cloud does NOT offer self-registration (to prevent abuse on public servers). If you self-host: the first Docker boot prints a random admin email + password to the logs — use that. Joining someone else\'s server: ask the admin to create an account for you in Web → Users.';
 
   @override
   String get cloudTutorialStep3Title => 'Step 3: Login + enable sync';
 
   @override
-  String get cloudTutorialStep3Desc => 'In the app, pick BeeCount Cloud, enter the server URL and the account you got in step 2. First login uploads your entire local ledger; every subsequent edit is pushed in real time.';
+  String get cloudTutorialStep3Desc => 'In the app, pick WaterBook Cloud, enter the server URL and the account you got in step 2. First login uploads your entire local ledger; every subsequent edit is pushed in real time.';
 
   @override
   String get cloudTutorialStep4Title => 'Step 4: Login from other devices';
@@ -4985,10 +4985,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get shareBillingDesc => 'Share a payment screenshot from Alipay/WeChat to bill it';
 
   @override
-  String get shareBillingGuide => 'When you see a payment screenshot in Alipay, WeChat, Photos, etc., tap \"Share\" and choose \"BeeCount\" to auto-recognize the amount, merchant, and time and create a transaction — no need to save the screenshot first.';
+  String get shareBillingGuide => 'When you see a payment screenshot in Alipay, WeChat, Photos, etc., tap \"Share\" and choose \"WaterBook\" to auto-recognize the amount, merchant, and time and create a transaction — no need to save the screenshot first.';
 
   @override
-  String get shareBillingActionHint => 'Recognized automatically in the background after sharing — no need to open BeeCount';
+  String get shareBillingActionHint => 'Recognized automatically in the background after sharing — no need to open WaterBook';
 
   @override
   String get automation => 'Automation';
@@ -5060,7 +5060,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aboutDeveloperStoryTitle => 'From the Developer';
 
   @override
-  String get aboutDeveloperStory => 'I started tracking my expenses in 2015 as an intern, and I\'ve kept the habit for over a decade. Concerned about ads, paywalls, privacy risks, and apps shutting down, I decided to build my own — first as a small tool for myself and my family.\n\nIn September 2025, BeeCount launched its first version. Honestly, I had no idea if anyone would use it. But gradually, feedback started coming in — someone said they finally found a clean budgeting app, others offered great suggestions, and some quietly left five-star reviews. Every single message reminded me this was worth continuing.\n\nBeeCount is ad-free, subscription-free, and fully open source. All your data stays on your device and is never uploaded to any third-party server. But publishing and maintaining an app isn\'t free — developer accounts, servers, and other costs are currently covered by community donations, and every system update, bug fix, and new feature is built outside of my day job.\n\nIf BeeCount has been helpful to you, a rating, a share, or a donation would help this little project go further. Thank you for your trust.';
+  String get aboutDeveloperStory => 'I started tracking my expenses in 2015 as an intern, and I\'ve kept the habit for over a decade. Concerned about ads, paywalls, privacy risks, and apps shutting down, I decided to build my own — first as a small tool for myself and my family.\n\nIn September 2025, WaterBook launched its first version. Honestly, I had no idea if anyone would use it. But gradually, feedback started coming in — someone said they finally found a clean budgeting app, others offered great suggestions, and some quietly left five-star reviews. Every single message reminded me this was worth continuing.\n\nWaterBook is ad-free, subscription-free, and fully open source. All your data stays on your device and is never uploaded to any third-party server. But publishing and maintaining an app isn\'t free — developer accounts, servers, and other costs are currently covered by community donations, and every system update, bug fix, and new feature is built outside of my day job.\n\nIf WaterBook has been helpful to you, a rating, a share, or a donation would help this little project go further. Thank you for your trust.';
 
   @override
   String get aboutRelatedProducts => 'More Products';
@@ -5072,7 +5072,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aboutBeeAssetsSubtitle => 'Visualize your full asset portfolio';
 
   @override
-  String get aboutBeeAssetsIntro => 'BeeCount focuses on daily cash flow; BeeAssets is its sibling product, focused on asset portfolio visualization: net worth trends across accounts, property / investment / crypto classification, returns, holding period, and allocation breakdown.';
+  String get aboutBeeAssetsIntro => 'WaterBook focuses on daily cash flow; BeeAssets is its sibling product, focused on asset portfolio visualization: net worth trends across accounts, property / investment / crypto classification, returns, holding period, and allocation breakdown.';
 
   @override
   String get aboutBeeDNS => 'BeeDNS';
@@ -5187,7 +5187,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get configExportSubtitle => 'Export current config to YAML file';
 
   @override
-  String get configExportShareSubject => 'BeeCount Config File';
+  String get configExportShareSubject => 'WaterBook Config File';
 
   @override
   String get configExportSuccess => 'Config exported successfully';
@@ -5908,7 +5908,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get donationDescription => 'Description';
 
   @override
-  String get donationDescriptionDetail => 'Thank you for using BeeCount! If this app helps you, feel free to buy the developer a coffee as encouragement. Your support is my motivation to keep improving.';
+  String get donationDescriptionDetail => 'Thank you for using WaterBook! If this app helps you, feel free to buy the developer a coffee as encouragement. Your support is my motivation to keep improving.';
 
   @override
   String get donationNoFeatures => 'Note: Donations will not unlock any features. All features remain completely free.';
@@ -5921,7 +5921,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String donationThankYouMessage(String productName) {
-    return 'Thank you for purchasing $productName! Your support means a lot to me. I will continue to improve BeeCount to make it even better!';
+    return 'Thank you for purchasing $productName! Your support means a lot to me. I will continue to improve WaterBook to make it even better!';
   }
 
   @override
@@ -6278,7 +6278,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get tagShareSubject => 'BeeCount Tags Configuration';
+  String get tagShareSubject => 'WaterBook Tags Configuration';
 
   @override
   String get tagShareFailed => 'Share failed';
@@ -7396,11 +7396,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sharedInviteWarning => '⚠️ Don\'t post invite codes to public groups / social. Anyone with the code can join. Revoke and regenerate from Members if leaked.';
 
   @override
-  String get sharedInviteInstruction => 'Send the code or short link to the other person. After they install BeeCount, they can tap the link or enter the code from \"Me → Join shared ledger\".';
+  String get sharedInviteInstruction => 'Send the code or short link to the other person. After they install WaterBook, they can tap the link or enter the code from \"Me → Join shared ledger\".';
 
   @override
   String sharedInviteShareText(String ledger, String code, String url) {
-    return 'I\'m inviting you to BeeCount shared ledger \"$ledger\".\n\nCode: $code\nLink: $url\n\nTap the link, or open BeeCount → Me → Join shared ledger and enter this code.';
+    return 'I\'m inviting you to WaterBook shared ledger \"$ledger\".\n\nCode: $code\nLink: $url\n\nTap the link, or open WaterBook → Me → Join shared ledger and enter this code.';
   }
 
   @override
@@ -8299,7 +8299,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get annualReportNotAchieved => 'Not Achieved';
 
   @override
-  String get annualReportDownloadHint => 'Scan to download BeeCount and start bookkeeping';
+  String get annualReportDownloadHint => 'Scan to download WaterBook and start bookkeeping';
 
   @override
   String get attachmentKeepOriginal => 'Keep Original Attachments';
@@ -8549,7 +8549,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get sharePosterAppText => 'BeeCount - Simple Ledger';
+  String get sharePosterAppText => 'WaterBook - Simple Ledger';
 
   @override
   String get sharePosterDefaultLedgerName => 'Default Ledger';
@@ -8675,7 +8675,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get logExportTitle => '=== BeeCount log export ===';
+  String get logExportTitle => '=== WaterBook log export ===';
 
   @override
   String logExportTime(String time) {
@@ -8825,10 +8825,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get v4HomeMonthShare => 'Share monthly summary';
 
   @override
-  String get v4HomeBrandShow => 'Show BeeCount branding';
+  String get v4HomeBrandShow => 'Show WaterBook branding';
 
   @override
-  String get v4HomeBrandHide => 'Hide BeeCount branding';
+  String get v4HomeBrandHide => 'Hide WaterBook branding';
 
   @override
   String get v4HomeMonthExpense => 'Monthly expenses';

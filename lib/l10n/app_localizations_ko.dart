@@ -207,7 +207,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get aiConsentTitle => 'AI 기능을 켜기 전에';
 
   @override
-  String get aiConsentBody => 'AI 기능을 사용하면 관련 데이터가 사용자가 설정한 제3자 AI 제공업체로 전송됩니다:\n\n• 전송 대상: 기본값은 즈푸 GLM(open.bigmodel.cn, 즈푸 운영)이며, 다른 제3자 AI 서비스를 설정한 경우 해당 제공업체로 전송됩니다.\n• 전송 내용: 인식/대화를 위해 직접 사용하는 콘텐츠 — 영수증 이미지, 음성 녹음, 입력한 텍스트, 그리고 인식/분석을 완료하는 데 필요한 카테고리 이름, 계정 이름 및 관련 거래 기록.\n• 목적: 사용자가 직접 시작한 영수증 인식, 기록, 대화에만 사용되며 BeeCount 자체는 이 데이터를 수집하거나 저장하지 않습니다.\n\n해당 데이터는 제3자 제공업체의 자체 개인정보 처리방침에 따라 처리됩니다. 켜면 위와 같은 데이터 공유에 동의하는 것입니다.';
+  String get aiConsentBody => 'AI 기능을 사용하면 관련 데이터가 사용자가 설정한 제3자 AI 제공업체로 전송됩니다:\n\n• 전송 대상: 기본값은 즈푸 GLM(open.bigmodel.cn, 즈푸 운영)이며, 다른 제3자 AI 서비스를 설정한 경우 해당 제공업체로 전송됩니다.\n• 전송 내용: 인식/대화를 위해 직접 사용하는 콘텐츠 — 영수증 이미지, 음성 녹음, 입력한 텍스트, 그리고 인식/분석을 완료하는 데 필요한 카테고리 이름, 계정 이름 및 관련 거래 기록.\n• 목적: 사용자가 직접 시작한 영수증 인식, 기록, 대화에만 사용되며 WaterBook 자체는 이 데이터를 수집하거나 저장하지 않습니다.\n\n해당 데이터는 제3자 제공업체의 자체 개인정보 처리방침에 따라 처리됩니다. 켜면 위와 같은 데이터 공유에 동의하는 것입니다.';
 
   @override
   String get aiConsentAgree => '동의하고 켜기';
@@ -332,7 +332,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get voiceRecordingPermissionDeniedTitle => '마이크 권한 필요';
 
   @override
-  String get voiceRecordingPermissionDeniedMessage => '음성 기록에는 마이크 권한이 필요합니다. 시스템 설정에서 BeeCount의 마이크 접근을 허용해 주세요.';
+  String get voiceRecordingPermissionDeniedMessage => '음성 기록에는 마이크 권한이 필요합니다. 시스템 설정에서 WaterBook의 마이크 접근을 허용해 주세요.';
 
   @override
   String voiceRecordingStartFailed(String error) {
@@ -1571,7 +1571,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get mineShareApp => '앱 공유';
 
   @override
-  String get mineShareWithFriends => '친구에게 BeeCount 공유하기';
+  String get mineShareWithFriends => '친구에게 WaterBook 공유하기';
 
   @override
   String get mineCopyPromoText => '홍보 문구 복사';
@@ -1583,7 +1583,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get mineShareGenerating => '공유 포스터 생성 중...';
 
   @override
-  String get sharePosterAppName => 'BeeCount';
+  String get sharePosterAppName => 'WaterBook';
 
   @override
   String get sharePosterSlogan => '스마트한 가계부, 아름다운 삶';
@@ -1660,7 +1660,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get sharePosterSaveSuccess => '갤러리에 저장되었습니다';
 
   @override
-  String get shareGuidanceCopyText => 'BeeCount로 지출을 기록하세요 - 오픈소스, 무료, 광고 없음! 🐝 다운로드: https://github.com/TNT-Likely/BeeCount';
+  String get shareGuidanceCopyText => 'WaterBook로 지출을 기록하세요. 모든 데이터는 기기에 저장됩니다.';
 
   @override
   String get shareGuidanceCopied => '텍스트가 복사되었습니다';
@@ -2218,7 +2218,7 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get categoryShareSubject => 'BeeCount 카테고리 설정';
+  String get categoryShareSubject => 'WaterBook 카테고리 설정';
 
   @override
   String get categoryShareFailed => '공유 실패';
@@ -2927,7 +2927,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get cloudWebdavPasswordLabel => '비밀번호';
 
   @override
-  String get cloudWebdavPathHint => '/BeeCount';
+  String get cloudWebdavPathHint => '/WaterBook';
 
   @override
   String get cloudS3EndpointLabel => '엔드포인트';
@@ -3085,7 +3085,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get exportCsvHeaderAttachments => '첨부파일';
 
   @override
-  String get exportShareText => 'BeeCount 내보내기 파일';
+  String get exportShareText => 'WaterBook 내보내기 파일';
 
   @override
   String get exportSuccessTitle => '내보내기 성공';
@@ -3317,7 +3317,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get updateCannotOpenLink => '링크를 열 수 없습니다';
 
   @override
-  String get updateManualVisit => '브라우저에서 직접 방문해 주세요:\\nhttps://github.com/TNT-Likely/BeeCount/releases';
+  String get updateManualVisit => '개인용 빌드입니다. 자신의 저장소 Actions 페이지에서 최신 APK를 받으세요.';
 
   @override
   String get updateNoLocalApkTitle => '업데이트 패키지를 찾을 수 없습니다';
@@ -3482,7 +3482,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get updateNotificationGuideStep1 => '시스템 설정 > 앱 관리로 이동';
 
   @override
-  String get updateNotificationGuideStep2 => '\\\"BeeCount\\\" 앱을 찾으세요';
+  String get updateNotificationGuideStep2 => '\\\"WaterBook\\\" 앱을 찾으세요';
 
   @override
   String get updateNotificationGuideStep3 => '알림 권한을 활성화하세요';
@@ -3757,13 +3757,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get cloudCustomS3Subtitle => 'AWS S3 / Cloudflare R2 / MinIO';
 
   @override
-  String get cloudBeeCountCloudTitle => 'BeeCount 클라우드';
+  String get cloudBeeCountCloudTitle => 'WaterBook 클라우드';
 
   @override
   String get cloudBeeCountCloudSubtitle => '셀프 호스팅 · 증분 동기화 · 다중 기기';
 
   @override
-  String get cloudConfigureBeeCountCloudTitle => 'BeeCount 클라우드 설정';
+  String get cloudConfigureBeeCountCloudTitle => 'WaterBook 클라우드 설정';
 
   @override
   String get cloudBeeCountCloudUrlLabel => '서버 URL';
@@ -4323,7 +4323,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get updateCorruptedFileMessage => '이전에 다운로드한 설치 패키지가 불완전하거나 손상되었습니다. 삭제하고 다시 다운로드하시겠습니까?';
 
   @override
-  String get welcomeTitle => 'BeeCount에 오신 것을 환영합니다';
+  String get welcomeTitle => 'WaterBook에 오신 것을 환영합니다';
 
   @override
   String get welcomeDescription => '사용자의 개인정보를 진심으로 존중하는 가계부 앱';
@@ -4353,13 +4353,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get welcomeCloudSyncTitle => '선택적 클라우드 동기화';
 
   @override
-  String get welcomeCloudSyncDescription => 'BeeCount는 다양한 동기화 방식을 지원합니다 - 내 데이터는 내가 관리합니다';
+  String get welcomeCloudSyncDescription => 'WaterBook는 다양한 동기화 방식을 지원합니다 - 내 데이터는 내가 관리합니다';
 
   @override
   String get welcomeCloudSyncFeature1 => '클라우드 없이 완전히 오프라인으로 사용 가능';
 
   @override
-  String get welcomeCloudSyncFeature2 => 'BeeCount 클라우드 셀프 호스팅 (실시간 다중 기기 + 웹 UI)';
+  String get welcomeCloudSyncFeature2 => 'WaterBook 클라우드 셀프 호스팅 (실시간 다중 기기 + 웹 UI)';
 
   @override
   String get welcomeCloudSyncFeature3 => '또는 iCloud / WebDAV / Supabase / S3 중 선택';
@@ -4437,7 +4437,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get iosWidgetStep2 => '왼쪽 상단의 \"+\" 버튼을 누르세요';
 
   @override
-  String get iosWidgetStep3 => '\"BeeCount\"를 검색해서 선택하세요';
+  String get iosWidgetStep3 => '\"WaterBook\"를 검색해서 선택하세요';
 
   @override
   String get iosWidgetStep4 => '중간 크기 위젯을 선택해 홈 화면에 추가하세요';
@@ -4449,7 +4449,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get androidWidgetStep2 => '\"위젯\"을 선택하세요';
 
   @override
-  String get androidWidgetStep3 => '\"BeeCount\" 위젯을 찾아 길게 누르세요';
+  String get androidWidgetStep3 => '\"WaterBook\" 위젯을 찾아 길게 누르세요';
 
   @override
   String get androidWidgetStep4 => '홈 화면의 원하는 위치로 드래그하세요';
@@ -4467,7 +4467,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get widgetQuickEntryDesc => '위젯의 왼쪽을 누르면 지출을 빠르게 추가하고, 오른쪽을 누르면 수입을 추가합니다. 단축어에서 beecount://new?type=transfer 를 사용해 이체를 빠르게 시작할 수도 있습니다.';
 
   @override
-  String get appName => 'BeeCount';
+  String get appName => 'WaterBook';
 
   @override
   String get monthSuffix => '';
@@ -4551,10 +4551,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get iosAutoShortcutStep2 => '\"스크린샷 찍기\" 동작을 추가하세요';
 
   @override
-  String get iosAutoShortcutStep3 => '\"BeeCount - 자동 기록\" 동작을 검색해 추가하세요';
+  String get iosAutoShortcutStep3 => '\"WaterBook - 자동 기록\" 동작을 검색해 추가하세요';
 
   @override
-  String get iosAutoShortcutStep4 => '\"BeeCount\"의 스크린샷 매개변수를 이전 단계의 \"스크린샷\"으로 설정하세요';
+  String get iosAutoShortcutStep4 => '\"WaterBook\"의 스크린샷 매개변수를 이전 단계의 \"스크린샷\"으로 설정하세요';
 
   @override
   String get iosAutoShortcutStep5 => '(선택 사항) 설정 > 손쉬운 사용 > 터치 > 뒷면 탭으로 이동해 이 단축어를 연결하세요';
@@ -4827,25 +4827,25 @@ class AppLocalizationsKo extends AppLocalizations {
   String get cloudTutorialTitle => '시작하기';
 
   @override
-  String get cloudTutorialIntro => 'BeeCount 클라우드는 실시간 다중 기기 협업을 지원하는 셀프 호스팅 동기화 서버입니다. 사용 방법은 간단합니다:';
+  String get cloudTutorialIntro => 'WaterBook 클라우드는 실시간 다중 기기 협업을 지원하는 셀프 호스팅 동기화 서버입니다. 사용 방법은 간단합니다:';
 
   @override
   String get cloudTutorialStep1Title => '1단계: 서버 배포 또는 참여';
 
   @override
-  String get cloudTutorialStep1Desc => 'Docker 명령어 한 줄로 셀프 호스팅할 수 있습니다 (GitHub README의 Docker 가이드 참고). 또는 지인/팀이 운영하는 기존 BeeCount 클라우드 서버에 참여하세요.';
+  String get cloudTutorialStep1Desc => 'Docker 명령어 한 줄로 셀프 호스팅할 수 있습니다 (GitHub README의 Docker 가이드 참고). 또는 지인/팀이 운영하는 기존 WaterBook 클라우드 서버에 참여하세요.';
 
   @override
   String get cloudTutorialStep2Title => '2단계: 계정 받기';
 
   @override
-  String get cloudTutorialStep2Desc => 'BeeCount 클라우드는 (공개 서버 악용을 막기 위해) 자체 가입 기능을 제공하지 않습니다. 직접 호스팅하는 경우: Docker를 처음 실행하면 로그에 무작위 관리자 이메일과 비밀번호가 출력되니 이를 사용하세요. 다른 사람의 서버에 참여하는 경우: 관리자에게 웹 → 사용자에서 계정을 만들어 달라고 요청하세요.';
+  String get cloudTutorialStep2Desc => 'WaterBook 클라우드는 (공개 서버 악용을 막기 위해) 자체 가입 기능을 제공하지 않습니다. 직접 호스팅하는 경우: Docker를 처음 실행하면 로그에 무작위 관리자 이메일과 비밀번호가 출력되니 이를 사용하세요. 다른 사람의 서버에 참여하는 경우: 관리자에게 웹 → 사용자에서 계정을 만들어 달라고 요청하세요.';
 
   @override
   String get cloudTutorialStep3Title => '3단계: 로그인 및 동기화 활성화';
 
   @override
-  String get cloudTutorialStep3Desc => '앱에서 BeeCount 클라우드를 선택하고 서버 URL과 2단계에서 받은 계정을 입력하세요. 첫 로그인 시 로컬 가계부 전체가 업로드되며, 이후의 모든 변경 사항은 실시간으로 전송됩니다.';
+  String get cloudTutorialStep3Desc => '앱에서 WaterBook 클라우드를 선택하고 서버 URL과 2단계에서 받은 계정을 입력하세요. 첫 로그인 시 로컬 가계부 전체가 업로드되며, 이후의 모든 변경 사항은 실시간으로 전송됩니다.';
 
   @override
   String get cloudTutorialStep4Title => '4단계: 다른 기기에서 로그인';
@@ -4985,10 +4985,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get shareBillingDesc => '알리페이/위챗의 결제 스크린샷을 공유해 기록합니다';
 
   @override
-  String get shareBillingGuide => '알리페이, 위챗, 사진 앱 등에서 결제 스크린샷을 보면 \"공유\"를 누르고 \"BeeCount\"를 선택하세요. 금액, 가맹점, 시간을 자동으로 인식해 거래를 생성합니다 — 스크린샷을 먼저 저장할 필요가 없습니다.';
+  String get shareBillingGuide => '알리페이, 위챗, 사진 앱 등에서 결제 스크린샷을 보면 \"공유\"를 누르고 \"WaterBook\"를 선택하세요. 금액, 가맹점, 시간을 자동으로 인식해 거래를 생성합니다 — 스크린샷을 먼저 저장할 필요가 없습니다.';
 
   @override
-  String get shareBillingActionHint => '공유 후 백그라운드에서 자동으로 인식됩니다 — BeeCount를 열 필요가 없습니다';
+  String get shareBillingActionHint => '공유 후 백그라운드에서 자동으로 인식됩니다 — WaterBook를 열 필요가 없습니다';
 
   @override
   String get automation => '자동화';
@@ -5060,7 +5060,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get aboutDeveloperStoryTitle => '개발자로부터';
 
   @override
-  String get aboutDeveloperStory => '저는 2015년 인턴 시절부터 가계부를 쓰기 시작해서 10년 넘게 그 습관을 이어오고 있습니다. 광고, 유료 결제, 개인정보 유출 위험, 그리고 앱 서비스 종료에 대한 걱정 때문에 직접 만들어보기로 했습니다 — 처음에는 저와 가족을 위한 작은 도구로 시작했죠.\n\n2025년 9월, BeeCount의 첫 버전을 출시했습니다. 솔직히 누가 써줄지 전혀 알 수 없었습니다. 하지만 점차 피드백이 들어오기 시작했습니다 — 드디어 깔끔한 가계부 앱을 찾았다는 분도 있었고, 좋은 제안을 해주신 분도 있었고, 조용히 별점 5개를 남겨주신 분도 있었습니다. 그 하나하나의 메시지가 계속할 가치가 있다는 걸 일깨워 주었습니다.\n\nBeeCount는 광고도, 구독료도 없는 완전한 오픈소스입니다. 모든 데이터는 사용자의 기기에만 저장되며 어떤 제3자 서버로도 업로드되지 않습니다. 하지만 앱을 출시하고 유지하는 데는 비용이 듭니다 — 개발자 계정, 서버 등의 비용은 현재 커뮤니티 후원으로 충당하고 있으며, 모든 시스템 업데이트와 버그 수정, 신규 기능은 본업 외 시간에 만들고 있습니다.\n\nBeeCount가 도움이 되셨다면, 평점이나 공유, 후원 한 번이 이 작은 프로젝트가 더 멀리 나아가는 데 큰 힘이 됩니다. 믿어주셔서 감사합니다.';
+  String get aboutDeveloperStory => '저는 2015년 인턴 시절부터 가계부를 쓰기 시작해서 10년 넘게 그 습관을 이어오고 있습니다. 광고, 유료 결제, 개인정보 유출 위험, 그리고 앱 서비스 종료에 대한 걱정 때문에 직접 만들어보기로 했습니다 — 처음에는 저와 가족을 위한 작은 도구로 시작했죠.\n\n2025년 9월, WaterBook의 첫 버전을 출시했습니다. 솔직히 누가 써줄지 전혀 알 수 없었습니다. 하지만 점차 피드백이 들어오기 시작했습니다 — 드디어 깔끔한 가계부 앱을 찾았다는 분도 있었고, 좋은 제안을 해주신 분도 있었고, 조용히 별점 5개를 남겨주신 분도 있었습니다. 그 하나하나의 메시지가 계속할 가치가 있다는 걸 일깨워 주었습니다.\n\nWaterBook는 광고도, 구독료도 없는 완전한 오픈소스입니다. 모든 데이터는 사용자의 기기에만 저장되며 어떤 제3자 서버로도 업로드되지 않습니다. 하지만 앱을 출시하고 유지하는 데는 비용이 듭니다 — 개발자 계정, 서버 등의 비용은 현재 커뮤니티 후원으로 충당하고 있으며, 모든 시스템 업데이트와 버그 수정, 신규 기능은 본업 외 시간에 만들고 있습니다.\n\nWaterBook가 도움이 되셨다면, 평점이나 공유, 후원 한 번이 이 작은 프로젝트가 더 멀리 나아가는 데 큰 힘이 됩니다. 믿어주셔서 감사합니다.';
 
   @override
   String get aboutRelatedProducts => '더 많은 제품';
@@ -5072,7 +5072,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get aboutBeeAssetsSubtitle => '전체 자산 포트폴리오를 시각화하세요';
 
   @override
-  String get aboutBeeAssetsIntro => 'BeeCount가 일상적인 현금 흐름에 집중한다면, BeeAssets는 그 자매 제품으로 자산 포트폴리오 시각화에 집중합니다: 계좌별 순자산 추이, 부동산/투자/암호화폐 분류, 수익률, 보유 기간, 자산 배분 분석까지 확인할 수 있습니다.';
+  String get aboutBeeAssetsIntro => 'WaterBook가 일상적인 현금 흐름에 집중한다면, BeeAssets는 그 자매 제품으로 자산 포트폴리오 시각화에 집중합니다: 계좌별 순자산 추이, 부동산/투자/암호화폐 분류, 수익률, 보유 기간, 자산 배분 분석까지 확인할 수 있습니다.';
 
   @override
   String get aboutBeeDNS => 'BeeDNS';
@@ -5187,7 +5187,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get configExportSubtitle => '현재 설정을 YAML 파일로 내보내기';
 
   @override
-  String get configExportShareSubject => 'BeeCount 설정 파일';
+  String get configExportShareSubject => 'WaterBook 설정 파일';
 
   @override
   String get configExportSuccess => '설정을 내보냈습니다';
@@ -5908,7 +5908,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get donationDescription => '설명';
 
   @override
-  String get donationDescriptionDetail => 'BeeCount를 사용해 주셔서 감사합니다! 이 앱이 도움이 되었다면 개발자에게 커피 한 잔을 사주는 것으로 응원해 주세요. 여러분의 후원이 계속 발전할 수 있는 원동력이 됩니다.';
+  String get donationDescriptionDetail => 'WaterBook를 사용해 주셔서 감사합니다! 이 앱이 도움이 되었다면 개발자에게 커피 한 잔을 사주는 것으로 응원해 주세요. 여러분의 후원이 계속 발전할 수 있는 원동력이 됩니다.';
 
   @override
   String get donationNoFeatures => '안내: 후원해도 별도 기능이 잠금 해제되지 않습니다. 모든 기능은 완전히 무료로 유지됩니다.';
@@ -5921,7 +5921,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String donationThankYouMessage(String productName) {
-    return '$productName을(를) 구매해 주셔서 감사합니다! 여러분의 후원은 저에게 큰 힘이 됩니다. BeeCount를 더 좋게 만들기 위해 계속 노력하겠습니다!';
+    return '$productName을(를) 구매해 주셔서 감사합니다! 여러분의 후원은 저에게 큰 힘이 됩니다. WaterBook를 더 좋게 만들기 위해 계속 노력하겠습니다!';
   }
 
   @override
@@ -6278,7 +6278,7 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get tagShareSubject => 'BeeCount 태그 설정';
+  String get tagShareSubject => 'WaterBook 태그 설정';
 
   @override
   String get tagShareFailed => '공유 실패';
@@ -7396,11 +7396,11 @@ class AppLocalizationsKo extends AppLocalizations {
   String get sharedInviteWarning => '⚠️ 초대 코드를 공개 그룹이나 SNS에 게시하지 마세요. 코드를 가진 사람은 누구나 참여할 수 있습니다. 유출되었다면 멤버 화면에서 취소하고 다시 생성하세요.';
 
   @override
-  String get sharedInviteInstruction => '코드나 짧은 링크를 상대방에게 전달하세요. BeeCount를 설치한 후 링크를 누르거나 \"내 정보 → 공유 가계부 참여\"에서 코드를 입력하면 됩니다.';
+  String get sharedInviteInstruction => '코드나 짧은 링크를 상대방에게 전달하세요. WaterBook를 설치한 후 링크를 누르거나 \"내 정보 → 공유 가계부 참여\"에서 코드를 입력하면 됩니다.';
 
   @override
   String sharedInviteShareText(String ledger, String code, String url) {
-    return 'BeeCount 공유 가계부 \"$ledger\"에 초대합니다.\n\n코드: $code\n링크: $url\n\n링크를 누르거나 BeeCount → 내 정보 → 공유 가계부 참여에서 이 코드를 입력하세요.';
+    return 'WaterBook 공유 가계부 \"$ledger\"에 초대합니다.\n\n코드: $code\n링크: $url\n\n링크를 누르거나 WaterBook → 내 정보 → 공유 가계부 참여에서 이 코드를 입력하세요.';
   }
 
   @override
@@ -8299,7 +8299,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get annualReportNotAchieved => 'Not Achieved';
 
   @override
-  String get annualReportDownloadHint => 'Scan to download BeeCount and start bookkeeping';
+  String get annualReportDownloadHint => 'Scan to download WaterBook and start bookkeeping';
 
   @override
   String get attachmentKeepOriginal => 'Keep Original Attachments';
@@ -8549,7 +8549,7 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get sharePosterAppText => 'BeeCount - Simple Ledger';
+  String get sharePosterAppText => 'WaterBook - Simple Ledger';
 
   @override
   String get sharePosterDefaultLedgerName => 'Default Ledger';
@@ -8675,7 +8675,7 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get logExportTitle => '=== BeeCount log export ===';
+  String get logExportTitle => '=== WaterBook log export ===';
 
   @override
   String logExportTime(String time) {
@@ -8825,10 +8825,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get v4HomeMonthShare => 'Share monthly summary';
 
   @override
-  String get v4HomeBrandShow => 'Show BeeCount branding';
+  String get v4HomeBrandShow => 'Show WaterBook branding';
 
   @override
-  String get v4HomeBrandHide => 'Hide BeeCount branding';
+  String get v4HomeBrandHide => 'Hide WaterBook branding';
 
   @override
   String get v4HomeMonthExpense => 'Monthly expenses';

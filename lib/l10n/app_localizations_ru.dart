@@ -231,7 +231,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get aiConsentTitle => 'Перед включением функций ИИ';
 
   @override
-  String get aiConsentBody => 'Для работы функций ИИ данные отправляются стороннему поставщику ИИ, выбранному в настройках:\n\n• Кому: по умолчанию — Zhipu GLM (open.bigmodel.cn, оператор — Zhipu). Если вы настроили другой сервис ИИ, данные отправляются выбранному вами поставщику.\n• Какие данные: изображения чеков, аудиозаписи и текст, которые вы используете для распознавания или чата, а также названия категорий и счетов и соответствующие транзакции, необходимые для распознавания или анализа.\n• Зачем: только для распознавания транзакций, ведения учёта и чатов, которые вы начинаете. BeeCount не собирает и не хранит эти данные.\n\nСторонний поставщик обрабатывает данные согласно своей политике конфиденциальности. Включая функции ИИ, вы соглашаетесь на передачу данных на этих условиях.';
+  String get aiConsentBody => 'Для работы функций ИИ данные отправляются стороннему поставщику ИИ, выбранному в настройках:\n\n• Кому: по умолчанию — Zhipu GLM (open.bigmodel.cn, оператор — Zhipu). Если вы настроили другой сервис ИИ, данные отправляются выбранному вами поставщику.\n• Какие данные: изображения чеков, аудиозаписи и текст, которые вы используете для распознавания или чата, а также названия категорий и счетов и соответствующие транзакции, необходимые для распознавания или анализа.\n• Зачем: только для распознавания транзакций, ведения учёта и чатов, которые вы начинаете. WaterBook не собирает и не хранит эти данные.\n\nСторонний поставщик обрабатывает данные согласно своей политике конфиденциальности. Включая функции ИИ, вы соглашаетесь на передачу данных на этих условиях.';
 
   @override
   String get aiConsentAgree => 'Согласиться и включить';
@@ -243,7 +243,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get aboutChangelog => 'Список изменений';
 
   @override
-  String get appTitle => 'BeeCount';
+  String get appTitle => 'WaterBook';
 
   @override
   String get tabHome => 'Главная';
@@ -356,7 +356,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get voiceRecordingPermissionDeniedTitle => 'Нужен доступ к микрофону';
 
   @override
-  String get voiceRecordingPermissionDeniedMessage => 'Для голосового ввода нужен микрофон. Разрешите BeeCount доступ к микрофону в настройках системы.';
+  String get voiceRecordingPermissionDeniedMessage => 'Для голосового ввода нужен микрофон. Разрешите WaterBook доступ к микрофону в настройках системы.';
 
   @override
   String voiceRecordingStartFailed(String error) {
@@ -501,7 +501,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get homeSelectDate => 'Выбрать дату';
 
   @override
-  String get homeAppTitle => 'BeeCount';
+  String get homeAppTitle => 'WaterBook';
 
   @override
   String get homeSearch => 'Поиск';
@@ -810,7 +810,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get analyticsToday => 'Сегодня';
 
   @override
-  String get splashAppName => 'BeeCount';
+  String get splashAppName => 'WaterBook';
 
   @override
   String get splashSlogan => 'Каждая транзакция на счету';
@@ -1360,7 +1360,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get deleteConfirmMessage => 'Удалить эту транзакцию?';
 
   @override
-  String get mineSlogan => 'BeeCount — каждая копейка на счету';
+  String get mineSlogan => 'WaterBook — каждая копейка на счету';
 
   @override
   String get mineDisplayNameEditTitle => 'Имя в профиле';
@@ -1651,7 +1651,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get mineShareApp => 'Поделиться приложением';
 
   @override
-  String get mineShareWithFriends => 'Поделиться BeeCount с друзьями';
+  String get mineShareWithFriends => 'Поделиться WaterBook с друзьями';
 
   @override
   String get mineCopyPromoText => 'Скопировать текст';
@@ -1663,7 +1663,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get mineShareGenerating => 'Создание постера...';
 
   @override
-  String get sharePosterAppName => 'BeeCount';
+  String get sharePosterAppName => 'WaterBook';
 
   @override
   String get sharePosterSlogan => 'Умный учёт на каждый день';
@@ -1748,7 +1748,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get sharePosterSaveSuccess => 'Сохранено в галерею';
 
   @override
-  String get shareGuidanceCopyText => 'Ведите учёт расходов в BeeCount — открытый код, бесплатно и без рекламы! 🐝 Скачать: https://github.com/TNT-Likely/BeeCount';
+  String get shareGuidanceCopyText => 'Ведите учёт расходов в WaterBook. Все данные хранятся на устройстве.';
 
   @override
   String get shareGuidanceCopied => 'Текст скопирован';
@@ -2330,7 +2330,7 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get categoryShareSubject => 'Настройки категорий BeeCount';
+  String get categoryShareSubject => 'Настройки категорий WaterBook';
 
   @override
   String get categoryShareFailed => 'Не удалось поделиться';
@@ -2911,10 +2911,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get reminderDescription => 'Если включить напоминание об учёте, система будет каждый день в заданное время напоминать вам о необходимости внести доходы и расходы.';
 
   @override
-  String get reminderIOSInstructions => '🍎 Настройки уведомлений iOS:\n• Настройки > Уведомления > BeeCount\n• Включите «Допуск уведомлений»\n• Выберите стиль уведомлений: баннеры или предупреждения\n• Включите звук и вибрацию\n\n⚠️ Важно:\n• Локальные уведомления iOS зависят от работы приложения\n• Не смахивайте карточку приложения в списке открытых приложений\n• Уведомления работают и в открытом приложении, и в фоновом режиме\n• При принудительном закрытии приложения уведомления перестанут приходить\n\n💡 Советы:\n• Чтобы свернуть приложение, перейдите на экран «Домой»\n• iOS автоматически управляет фоновыми приложениями\n• Оставьте приложение в фоновом режиме, чтобы получать напоминания';
+  String get reminderIOSInstructions => '🍎 Настройки уведомлений iOS:\n• Настройки > Уведомления > WaterBook\n• Включите «Допуск уведомлений»\n• Выберите стиль уведомлений: баннеры или предупреждения\n• Включите звук и вибрацию\n\n⚠️ Важно:\n• Локальные уведомления iOS зависят от работы приложения\n• Не смахивайте карточку приложения в списке открытых приложений\n• Уведомления работают и в открытом приложении, и в фоновом режиме\n• При принудительном закрытии приложения уведомления перестанут приходить\n\n💡 Советы:\n• Чтобы свернуть приложение, перейдите на экран «Домой»\n• iOS автоматически управляет фоновыми приложениями\n• Оставьте приложение в фоновом режиме, чтобы получать напоминания';
 
   @override
-  String get reminderAndroidInstructions => 'Если уведомления не приходят, проверьте настройки:\n• Разрешите приложению отправлять уведомления\n• Отключите оптимизацию батареи и энергосбережение для приложения\n• Разрешите работу в фоновом режиме и автозапуск\n• На Android 12 и новее разрешите приложению устанавливать точные будильники\n\n📱 Дополнительные настройки для телефонов Xiaomi:\n• Настройки > Управление приложениями > BeeCount > Управление уведомлениями\n• Выберите канал «Напоминание об учёте»\n• Установите важность «Срочная» или «Высокая»\n• Включите «Баннеры уведомлений», «Звук» и «Вибрацию»\n• Безопасность > Управление приложениями > Разрешения > Автозапуск\n\n🔒 Как закрепить приложение в фоновом режиме:\n• Найдите BeeCount в списке недавних приложений\n• Потяните карточку приложения вниз, чтобы появился значок замка\n• Нажмите на замок, чтобы приложение не закрывалось при очистке';
+  String get reminderAndroidInstructions => 'Если уведомления не приходят, проверьте настройки:\n• Разрешите приложению отправлять уведомления\n• Отключите оптимизацию батареи и энергосбережение для приложения\n• Разрешите работу в фоновом режиме и автозапуск\n• На Android 12 и новее разрешите приложению устанавливать точные будильники\n\n📱 Дополнительные настройки для телефонов Xiaomi:\n• Настройки > Управление приложениями > WaterBook > Управление уведомлениями\n• Выберите канал «Напоминание об учёте»\n• Установите важность «Срочная» или «Высокая»\n• Включите «Баннеры уведомлений», «Звук» и «Вибрацию»\n• Безопасность > Управление приложениями > Разрешения > Автозапуск\n\n🔒 Как закрепить приложение в фоновом режиме:\n• Найдите WaterBook в списке недавних приложений\n• Потяните карточку приложения вниз, чтобы появился значок замка\n• Нажмите на замок, чтобы приложение не закрывалось при очистке';
 
   @override
   String get categoryDetailLoadFailed => 'Не удалось загрузить';
@@ -3047,7 +3047,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get cloudWebdavPasswordLabel => 'Пароль';
 
   @override
-  String get cloudWebdavPathHint => '/BeeCount';
+  String get cloudWebdavPathHint => '/WaterBook';
 
   @override
   String get cloudS3EndpointLabel => 'Адрес сервиса';
@@ -3205,7 +3205,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get exportCsvHeaderAttachments => 'Вложения';
 
   @override
-  String get exportShareText => 'Файл экспорта BeeCount';
+  String get exportShareText => 'Файл экспорта WaterBook';
 
   @override
   String get exportSuccessTitle => 'Экспорт завершён';
@@ -3437,7 +3437,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get updateCannotOpenLink => 'Не удалось открыть ссылку';
 
   @override
-  String get updateManualVisit => 'Откройте ссылку в браузере:\\nhttps://github.com/TNT-Likely/BeeCount/releases';
+  String get updateManualVisit => 'Это персональная сборка. Скачайте последний APK на странице Actions своего репозитория.';
 
   @override
   String get updateNoLocalApkTitle => 'Пакет обновления не найден';
@@ -3610,7 +3610,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get updateNotificationGuideStep1 => 'Откройте настройки системы > Управление приложениями';
 
   @override
-  String get updateNotificationGuideStep2 => 'Найдите приложение \\\"BeeCount\\\"';
+  String get updateNotificationGuideStep2 => 'Найдите приложение \\\"WaterBook\\\"';
 
   @override
   String get updateNotificationGuideStep3 => 'Разрешите уведомления';
@@ -3917,13 +3917,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get cloudCustomS3Subtitle => 'AWS S3 / Cloudflare R2 / MinIO';
 
   @override
-  String get cloudBeeCountCloudTitle => 'BeeCount Cloud';
+  String get cloudBeeCountCloudTitle => 'WaterBook Cloud';
 
   @override
   String get cloudBeeCountCloudSubtitle => 'Свой сервер · синхронизация изменений · несколько устройств';
 
   @override
-  String get cloudConfigureBeeCountCloudTitle => 'Настроить BeeCount Cloud';
+  String get cloudConfigureBeeCountCloudTitle => 'Настроить WaterBook Cloud';
 
   @override
   String get cloudBeeCountCloudUrlLabel => 'URL сервера';
@@ -4499,7 +4499,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get updateCorruptedFileMessage => 'Ранее скачанный установочный пакет неполный или повреждён. Удалить его и скачать заново?';
 
   @override
-  String get welcomeTitle => 'Добро пожаловать в BeeCount';
+  String get welcomeTitle => 'Добро пожаловать в WaterBook';
 
   @override
   String get welcomeDescription => 'Приложение для учёта, которое бережно относится к вашим данным';
@@ -4529,13 +4529,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get welcomeCloudSyncTitle => 'Синхронизация по желанию';
 
   @override
-  String get welcomeCloudSyncDescription => 'Выберите удобный способ синхронизации — данные в BeeCount остаются под вашим контролем';
+  String get welcomeCloudSyncDescription => 'Выберите удобный способ синхронизации — данные в WaterBook остаются под вашим контролем';
 
   @override
   String get welcomeCloudSyncFeature1 => 'Можно пользоваться приложением офлайн, без облачного сервиса';
 
   @override
-  String get welcomeCloudSyncFeature2 => 'BeeCount Cloud на своём сервере (синхронизация устройств в реальном времени и веб-интерфейс)';
+  String get welcomeCloudSyncFeature2 => 'WaterBook Cloud на своём сервере (синхронизация устройств в реальном времени и веб-интерфейс)';
 
   @override
   String get welcomeCloudSyncFeature3 => 'Или выберите iCloud / WebDAV / Supabase / S3';
@@ -4613,7 +4613,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get iosWidgetStep2 => 'Нажмите «+» в левом верхнем углу';
 
   @override
-  String get iosWidgetStep3 => 'Найдите и выберите «BeeCount»';
+  String get iosWidgetStep3 => 'Найдите и выберите «WaterBook»';
 
   @override
   String get iosWidgetStep4 => 'Выберите виджет среднего размера и добавьте его на экран «Домой»';
@@ -4625,7 +4625,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get androidWidgetStep2 => 'Выберите «Виджеты»';
 
   @override
-  String get androidWidgetStep3 => 'Найдите виджет «BeeCount», нажмите и удерживайте его';
+  String get androidWidgetStep3 => 'Найдите виджет «WaterBook», нажмите и удерживайте его';
 
   @override
   String get androidWidgetStep4 => 'Перетащите виджет в нужное место на главном экране';
@@ -4643,7 +4643,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get widgetQuickEntryDesc => 'Коснитесь левой части виджета, чтобы добавить расход, или правой, чтобы добавить доход. Быстрая команда с URL beecount://new?type=transfer позволяет сразу начать перевод.';
 
   @override
-  String get appName => 'BeeCount';
+  String get appName => 'WaterBook';
 
   @override
   String get monthSuffix => '';
@@ -4700,13 +4700,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get autoBillingBatteryGuideTitle => 'Настройки оптимизации батареи';
 
   @override
-  String get autoBillingBatteryDesc => 'Для автоучёта приложение должно работать в фоновом режиме. Некоторые телефоны закрывают фоновые приложения при блокировке экрана, из-за чего автоучёт может не сработать. Чтобы этого избежать, отключите оптимизацию батареи для BeeCount.';
+  String get autoBillingBatteryDesc => 'Для автоучёта приложение должно работать в фоновом режиме. Некоторые телефоны закрывают фоновые приложения при блокировке экрана, из-за чего автоучёт может не сработать. Чтобы этого избежать, отключите оптимизацию батареи для WaterBook.';
 
   @override
   String get autoBillingCheckBattery => 'Проверить оптимизацию батареи';
 
   @override
-  String get autoBillingBatteryWarning => '⚠️ Оптимизация батареи включена. Система может закрыть BeeCount, и автоучёт не сработает. Нажмите «Настройки» выше и отключите оптимизацию для BeeCount.';
+  String get autoBillingBatteryWarning => '⚠️ Оптимизация батареи включена. Система может закрыть WaterBook, и автоучёт не сработает. Нажмите «Настройки» выше и отключите оптимизацию для WaterBook.';
 
   @override
   String get enableFailed => 'Не удалось включить автоучёт';
@@ -4727,10 +4727,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get iosAutoShortcutStep2 => 'Добавьте действие «Сделать снимок экрана»';
 
   @override
-  String get iosAutoShortcutStep3 => 'Найдите и добавьте действие «BeeCount — Автоучёт по скриншоту»';
+  String get iosAutoShortcutStep3 => 'Найдите и добавьте действие «WaterBook — Автоучёт по скриншоту»';
 
   @override
-  String get iosAutoShortcutStep4 => 'В действии «BeeCount» укажите в качестве скриншота результат предыдущего шага «Сделать снимок экрана»';
+  String get iosAutoShortcutStep4 => 'В действии «WaterBook» укажите в качестве скриншота результат предыдущего шага «Сделать снимок экрана»';
 
   @override
   String get iosAutoShortcutStep5 => '(Необязательно) Откройте «Настройки» > «Универсальный доступ» > «Касание» > «Коснуться сзади» и назначьте эту команду';
@@ -5011,25 +5011,25 @@ class AppLocalizationsRu extends AppLocalizations {
   String get cloudTutorialTitle => 'Начало работы';
 
   @override
-  String get cloudTutorialIntro => 'BeeCount Cloud — сервер синхронизации для совместной работы на нескольких устройствах в реальном времени. Его можно развернуть у себя. Вот как начать:';
+  String get cloudTutorialIntro => 'WaterBook Cloud — сервер синхронизации для совместной работы на нескольких устройствах в реальном времени. Его можно развернуть у себя. Вот как начать:';
 
   @override
   String get cloudTutorialStep1Title => 'Шаг 1. Развернуть или выбрать сервер';
 
   @override
-  String get cloudTutorialStep1Desc => 'Разверните сервер одной командой Docker (см. инструкцию по Docker в README на GitHub). Или подключитесь к серверу BeeCount Cloud, который уже настроили ваши друзья или команда.';
+  String get cloudTutorialStep1Desc => 'Разверните сервер одной командой Docker (см. инструкцию по Docker в README на GitHub). Или подключитесь к серверу WaterBook Cloud, который уже настроили ваши друзья или команда.';
 
   @override
   String get cloudTutorialStep2Title => 'Шаг 2. Получить аккаунт';
 
   @override
-  String get cloudTutorialStep2Desc => 'В BeeCount Cloud нет самостоятельной регистрации, чтобы предотвратить злоупотребления на общедоступных серверах. Если вы развернули свой сервер, при первом запуске Docker в журнале появятся сгенерированные адрес эл. почты и пароль администратора. Войдите с ними. Если вы подключаетесь к чужому серверу, попросите администратора создать для вас аккаунт в разделе «Пользователи» веб-интерфейса.';
+  String get cloudTutorialStep2Desc => 'В WaterBook Cloud нет самостоятельной регистрации, чтобы предотвратить злоупотребления на общедоступных серверах. Если вы развернули свой сервер, при первом запуске Docker в журнале появятся сгенерированные адрес эл. почты и пароль администратора. Войдите с ними. Если вы подключаетесь к чужому серверу, попросите администратора создать для вас аккаунт в разделе «Пользователи» веб-интерфейса.';
 
   @override
   String get cloudTutorialStep3Title => 'Шаг 3. Войти и включить синхронизацию';
 
   @override
-  String get cloudTutorialStep3Desc => 'В приложении выберите BeeCount Cloud, введите URL сервера и данные аккаунта из шага 2, затем войдите. При первом входе в облако загрузятся все данные ваших локальных ведомостей. Дальнейшие изменения будут отправляться в реальном времени.';
+  String get cloudTutorialStep3Desc => 'В приложении выберите WaterBook Cloud, введите URL сервера и данные аккаунта из шага 2, затем войдите. При первом входе в облако загрузятся все данные ваших локальных ведомостей. Дальнейшие изменения будут отправляться в реальном времени.';
 
   @override
   String get cloudTutorialStep4Title => 'Шаг 4. Войти с других устройств';
@@ -5169,10 +5169,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get shareBillingDesc => 'Поделитесь скриншотом оплаты из Alipay или WeChat, чтобы добавить транзакцию';
 
   @override
-  String get shareBillingGuide => 'Откройте скриншот оплаты в Alipay, WeChat, галерее или другом приложении, нажмите «Поделиться» и выберите BeeCount. Приложение распознает сумму, продавца и время и добавит транзакцию. Сохранять скриншот заранее не нужно.';
+  String get shareBillingGuide => 'Откройте скриншот оплаты в Alipay, WeChat, галерее или другом приложении, нажмите «Поделиться» и выберите WaterBook. Приложение распознает сумму, продавца и время и добавит транзакцию. Сохранять скриншот заранее не нужно.';
 
   @override
-  String get shareBillingActionHint => 'После отправки скриншот распознаётся в фоновом режиме — открывать BeeCount не нужно';
+  String get shareBillingActionHint => 'После отправки скриншот распознаётся в фоновом режиме — открывать WaterBook не нужно';
 
   @override
   String get automation => 'Автоматизация';
@@ -5244,7 +5244,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get aboutDeveloperStoryTitle => 'От разработчика';
 
   @override
-  String get aboutDeveloperStory => 'Я начал записывать расходы в 2015 году, когда был стажёром, и веду учёт уже больше десяти лет. Меня беспокоили реклама, платный доступ, риск утечки данных и закрытия приложений. Поэтому я решил сделать своё — сначала это был небольшой инструмент для меня и моей семьи.\n\nВ сентябре 2025 года вышла первая версия BeeCount. Честно говоря, я не знал, будет ли им кто-нибудь пользоваться. Но постепенно стали приходить отзывы: кто-то наконец нашёл простое приложение для учёта финансов, кто-то предложил отличную идею, а кто-то просто поставил пять звёзд. Каждый отзыв напоминал мне, что проект стоит развивать дальше.\n\nВ BeeCount нет рекламы и подписок, а исходный код полностью открыт. Все ваши данные остаются на устройстве и не загружаются ни на один сторонний сервер. Но выпуск и поддержка приложения требуют расходов: аккаунты разработчика, серверы и другие затраты сейчас покрываются пожертвованиями сообщества. Адаптацией к новым версиям ОС, исправлением ошибок и разработкой новых функций я занимаюсь в свободное от основной работы время.\n\nЕсли BeeCount вам помогает, поставьте оценку, расскажите о приложении или поддержите его пожертвованием. Это поможет небольшому проекту развиваться. Спасибо за ваше доверие.';
+  String get aboutDeveloperStory => 'Я начал записывать расходы в 2015 году, когда был стажёром, и веду учёт уже больше десяти лет. Меня беспокоили реклама, платный доступ, риск утечки данных и закрытия приложений. Поэтому я решил сделать своё — сначала это был небольшой инструмент для меня и моей семьи.\n\nВ сентябре 2025 года вышла первая версия WaterBook. Честно говоря, я не знал, будет ли им кто-нибудь пользоваться. Но постепенно стали приходить отзывы: кто-то наконец нашёл простое приложение для учёта финансов, кто-то предложил отличную идею, а кто-то просто поставил пять звёзд. Каждый отзыв напоминал мне, что проект стоит развивать дальше.\n\nВ WaterBook нет рекламы и подписок, а исходный код полностью открыт. Все ваши данные остаются на устройстве и не загружаются ни на один сторонний сервер. Но выпуск и поддержка приложения требуют расходов: аккаунты разработчика, серверы и другие затраты сейчас покрываются пожертвованиями сообщества. Адаптацией к новым версиям ОС, исправлением ошибок и разработкой новых функций я занимаюсь в свободное от основной работы время.\n\nЕсли WaterBook вам помогает, поставьте оценку, расскажите о приложении или поддержите его пожертвованием. Это поможет небольшому проекту развиваться. Спасибо за ваше доверие.';
 
   @override
   String get aboutRelatedProducts => 'Другие продукты';
@@ -5256,7 +5256,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get aboutBeeAssetsSubtitle => 'Весь портфель активов наглядно';
 
   @override
-  String get aboutBeeAssetsIntro => 'BeeCount помогает вести повседневный учёт, а BeeAssets наглядно показывает состав портфеля: динамику чистых активов по всем счетам, разбивку по недвижимости, инвестициям и криптоактивам, доходность, сроки владения и долю каждого вида активов.';
+  String get aboutBeeAssetsIntro => 'WaterBook помогает вести повседневный учёт, а BeeAssets наглядно показывает состав портфеля: динамику чистых активов по всем счетам, разбивку по недвижимости, инвестициям и криптоактивам, доходность, сроки владения и долю каждого вида активов.';
 
   @override
   String get aboutBeeDNS => 'BeeDNS';
@@ -5371,7 +5371,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get configExportSubtitle => 'Экспорт текущих настроек в файл YAML';
 
   @override
-  String get configExportShareSubject => 'Файл настроек BeeCount';
+  String get configExportShareSubject => 'Файл настроек WaterBook';
 
   @override
   String get configExportSuccess => 'Настройки экспортированы';
@@ -5677,7 +5677,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get welcomeCategoryModeNoneFeature3 => 'Подходит, если у вас своя система категорий';
 
   @override
-  String get welcomeExistingUserTitle => 'Уже пользовались BeeCount?';
+  String get welcomeExistingUserTitle => 'Уже пользовались WaterBook?';
 
   @override
   String get welcomeExistingUserButton => 'Импортировать настройки';
@@ -6110,7 +6110,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get donationDescription => 'Описание';
 
   @override
-  String get donationDescriptionDetail => 'Спасибо, что пользуетесь BeeCount! Если приложение вам помогает, можете угостить разработчика кофе. Ваша поддержка вдохновляет меня улучшать приложение.';
+  String get donationDescriptionDetail => 'Спасибо, что пользуетесь WaterBook! Если приложение вам помогает, можете угостить разработчика кофе. Ваша поддержка вдохновляет меня улучшать приложение.';
 
   @override
   String get donationNoFeatures => 'Пожертвования не открывают дополнительных функций. Все функции остаются бесплатными.';
@@ -6123,7 +6123,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String donationThankYouMessage(String productName) {
-    return 'Спасибо за покупку «$productName»! Ваша поддержка много для меня значит. Я продолжу улучшать BeeCount, чтобы пользоваться им стало ещё удобнее!';
+    return 'Спасибо за покупку «$productName»! Ваша поддержка много для меня значит. Я продолжу улучшать WaterBook, чтобы пользоваться им стало ещё удобнее!';
   }
 
   @override
@@ -6480,7 +6480,7 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get tagShareSubject => 'Настройки тегов BeeCount';
+  String get tagShareSubject => 'Настройки тегов WaterBook';
 
   @override
   String get tagShareFailed => 'Не удалось поделиться';
@@ -7213,7 +7213,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get appLockBiometricDesc => 'Разблокировка с помощью Face ID или отпечатка пальца';
 
   @override
-  String get appLockBiometricReason => 'Подтвердите личность, чтобы разблокировать BeeCount';
+  String get appLockBiometricReason => 'Подтвердите личность, чтобы разблокировать WaterBook';
 
   @override
   String get appLockTimeout => 'Автоблокировка через';
@@ -7686,11 +7686,11 @@ class AppLocalizationsRu extends AppLocalizations {
   String get sharedInviteWarning => '⚠️ Не публикуйте коды приглашений в открытых чатах и соцсетях. Любой, у кого есть код, может присоединиться к ведомости. Если код попал к посторонним, отзовите его на экране «Участники» и создайте новый.';
 
   @override
-  String get sharedInviteInstruction => 'Отправьте код или короткую ссылку. После установки BeeCount получатель сможет открыть ссылку или ввести код в разделе «Профиль → Присоединиться к ведомости».';
+  String get sharedInviteInstruction => 'Отправьте код или короткую ссылку. После установки WaterBook получатель сможет открыть ссылку или ввести код в разделе «Профиль → Присоединиться к ведомости».';
 
   @override
   String sharedInviteShareText(String ledger, String code, String url) {
-    return 'Приглашаю вас в совместную ведомость «$ledger» в BeeCount.\n\nКод: $code\nСсылка: $url\n\nОткройте ссылку или выберите «Профиль → Присоединиться к ведомости» в BeeCount и введите код.';
+    return 'Приглашаю вас в совместную ведомость «$ledger» в WaterBook.\n\nКод: $code\nСсылка: $url\n\nОткройте ссылку или выберите «Профиль → Присоединиться к ведомости» в WaterBook и введите код.';
   }
 
   @override
@@ -8657,7 +8657,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get annualReportNotAchieved => 'Не достигнуто';
 
   @override
-  String get annualReportDownloadHint => 'Отсканируйте код, чтобы скачать BeeCount и начать вести учёт';
+  String get annualReportDownloadHint => 'Отсканируйте код, чтобы скачать WaterBook и начать вести учёт';
 
   @override
   String get attachmentKeepOriginal => 'Сохранять оригиналы вложений';
@@ -8915,7 +8915,7 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get sharePosterAppText => 'BeeCount — простой учёт';
+  String get sharePosterAppText => 'WaterBook — простой учёт';
 
   @override
   String get sharePosterDefaultLedgerName => 'Основная ведомость';
@@ -9041,7 +9041,7 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get logExportTitle => '=== Экспорт журналов BeeCount ===';
+  String get logExportTitle => '=== Экспорт журналов WaterBook ===';
 
   @override
   String logExportTime(String time) {
@@ -9191,10 +9191,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get v4HomeMonthShare => 'Поделиться итогами месяца';
 
   @override
-  String get v4HomeBrandShow => 'Показать логотип BeeCount';
+  String get v4HomeBrandShow => 'Показать логотип WaterBook';
 
   @override
-  String get v4HomeBrandHide => 'Скрыть логотип BeeCount';
+  String get v4HomeBrandHide => 'Скрыть логотип WaterBook';
 
   @override
   String get v4HomeMonthExpense => 'Расходы за месяц';

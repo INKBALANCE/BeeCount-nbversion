@@ -451,7 +451,7 @@ abstract class AppLocalizations {
   /// No description provided for @aiConsentBody.
   ///
   /// In en, this message translates to:
-  /// **'AI features need to send related data to the third-party AI provider you configure:\n\n• Who it goes to: by default Zhipu GLM (open.bigmodel.cn, operated by Zhipu); if you configure another third-party AI service, it goes to the provider you entered.\n• What is sent: the content you actively use for recognition/chat — receipt images, voice recordings, text you type, plus the category names, account names and relevant transaction records needed to complete recognition/analysis.\n• Purpose: only for bill recognition, bookkeeping and chats you initiate; BeeCount itself does not collect or store this data.\n\nThe data is processed by that third-party provider under its own privacy policy. Enabling means you consent to the data sharing above.'**
+  /// **'AI features need to send related data to the third-party AI provider you configure:\n\n• Who it goes to: by default Zhipu GLM (open.bigmodel.cn, operated by Zhipu); if you configure another third-party AI service, it goes to the provider you entered.\n• What is sent: the content you actively use for recognition/chat — receipt images, voice recordings, text you type, plus the category names, account names and relevant transaction records needed to complete recognition/analysis.\n• Purpose: only for bill recognition, bookkeeping and chats you initiate; WaterBook itself does not collect or store this data.\n\nThe data is processed by that third-party provider under its own privacy policy. Enabling means you consent to the data sharing above.'**
   String get aiConsentBody;
 
   /// No description provided for @aiConsentAgree.
@@ -697,7 +697,7 @@ abstract class AppLocalizations {
   /// No description provided for @voiceRecordingPermissionDeniedMessage.
   ///
   /// In en, this message translates to:
-  /// **'Voice billing requires microphone permission. Please allow BeeCount to access the microphone in System Settings.'**
+  /// **'Voice billing requires microphone permission. Please allow WaterBook to access the microphone in System Settings.'**
   String get voiceRecordingPermissionDeniedMessage;
 
   /// No description provided for @voiceRecordingStartFailed.
@@ -2983,7 +2983,7 @@ abstract class AppLocalizations {
   /// No description provided for @mineShareWithFriends.
   ///
   /// In en, this message translates to:
-  /// **'Share BeeCount with friends'**
+  /// **'Share WaterBook with friends'**
   String get mineShareWithFriends;
 
   /// No description provided for @mineCopyPromoText.
@@ -3007,7 +3007,7 @@ abstract class AppLocalizations {
   /// No description provided for @sharePosterAppName.
   ///
   /// In en, this message translates to:
-  /// **'BeeCount'**
+  /// **'WaterBook'**
   String get sharePosterAppName;
 
   /// No description provided for @sharePosterSlogan.
@@ -3157,7 +3157,7 @@ abstract class AppLocalizations {
   /// No description provided for @shareGuidanceCopyText.
   ///
   /// In en, this message translates to:
-  /// **'Track my expenses with BeeCount - open source, free & ad-free! 🐝 Download: https://github.com/TNT-Likely/BeeCount'**
+  /// **'Track expenses with WaterBook. All data stays on your device.'**
   String get shareGuidanceCopyText;
 
   /// No description provided for @shareGuidanceCopied.
@@ -4201,7 +4201,7 @@ abstract class AppLocalizations {
   /// No description provided for @categoryShareSubject.
   ///
   /// In en, this message translates to:
-  /// **'BeeCount Category Configuration'**
+  /// **'WaterBook Category Configuration'**
   String get categoryShareSubject;
 
   /// No description provided for @categoryShareFailed.
@@ -5551,7 +5551,7 @@ abstract class AppLocalizations {
   /// No description provided for @cloudWebdavPathHint.
   ///
   /// In en, this message translates to:
-  /// **'/BeeCount'**
+  /// **'/WaterBook'**
   String get cloudWebdavPathHint;
 
   /// No description provided for @cloudS3EndpointLabel.
@@ -5863,7 +5863,7 @@ abstract class AppLocalizations {
   /// No description provided for @exportShareText.
   ///
   /// In en, this message translates to:
-  /// **'BeeCount Export File'**
+  /// **'WaterBook Export File'**
   String get exportShareText;
 
   /// No description provided for @exportSuccessTitle.
@@ -6295,7 +6295,7 @@ abstract class AppLocalizations {
   /// No description provided for @updateManualVisit.
   ///
   /// In en, this message translates to:
-  /// **'Please manually visit in browser:\\nhttps://github.com/TNT-Likely/BeeCount/releases'**
+  /// **'This is a personal build. Download the latest APK from your own repository Actions page.'**
   String get updateManualVisit;
 
   /// No description provided for @updateNoLocalApkTitle.
@@ -6589,7 +6589,7 @@ abstract class AppLocalizations {
   /// No description provided for @updateNotificationGuideStep2.
   ///
   /// In en, this message translates to:
-  /// **'Find \\\"BeeCount\\\" app'**
+  /// **'Find \\\"WaterBook\\\" app'**
   String get updateNotificationGuideStep2;
 
   /// No description provided for @updateNotificationGuideStep3.
@@ -7123,7 +7123,7 @@ abstract class AppLocalizations {
   /// No description provided for @cloudBeeCountCloudTitle.
   ///
   /// In en, this message translates to:
-  /// **'BeeCount Cloud'**
+  /// **'WaterBook Cloud'**
   String get cloudBeeCountCloudTitle;
 
   /// No description provided for @cloudBeeCountCloudSubtitle.
@@ -7135,7 +7135,7 @@ abstract class AppLocalizations {
   /// No description provided for @cloudConfigureBeeCountCloudTitle.
   ///
   /// In en, this message translates to:
-  /// **'Configure BeeCount Cloud'**
+  /// **'Configure WaterBook Cloud'**
   String get cloudConfigureBeeCountCloudTitle;
 
   /// No description provided for @cloudBeeCountCloudUrlLabel.
@@ -8227,7 +8227,7 @@ abstract class AppLocalizations {
   /// No description provided for @welcomeTitle.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to BeeCount'**
+  /// **'Welcome to WaterBook'**
   String get welcomeTitle;
 
   /// No description provided for @welcomeDescription.
@@ -8287,7 +8287,7 @@ abstract class AppLocalizations {
   /// No description provided for @welcomeCloudSyncDescription.
   ///
   /// In en, this message translates to:
-  /// **'BeeCount supports multiple sync methods - your data, your control'**
+  /// **'WaterBook supports multiple sync methods - your data, your control'**
   String get welcomeCloudSyncDescription;
 
   /// No description provided for @welcomeCloudSyncFeature1.
@@ -8299,7 +8299,7 @@ abstract class AppLocalizations {
   /// No description provided for @welcomeCloudSyncFeature2.
   ///
   /// In en, this message translates to:
-  /// **'BeeCount Cloud self-hosted (real-time multi-device + Web UI)'**
+  /// **'WaterBook Cloud self-hosted (real-time multi-device + Web UI)'**
   String get welcomeCloudSyncFeature2;
 
   /// No description provided for @welcomeCloudSyncFeature3.
@@ -8455,7 +8455,7 @@ abstract class AppLocalizations {
   /// No description provided for @iosWidgetStep3.
   ///
   /// In en, this message translates to:
-  /// **'Search and select \"BeeCount\"'**
+  /// **'Search and select \"WaterBook\"'**
   String get iosWidgetStep3;
 
   /// No description provided for @iosWidgetStep4.
@@ -8479,7 +8479,7 @@ abstract class AppLocalizations {
   /// No description provided for @androidWidgetStep3.
   ///
   /// In en, this message translates to:
-  /// **'Find and long press \"BeeCount\" widget'**
+  /// **'Find and long press \"WaterBook\" widget'**
   String get androidWidgetStep3;
 
   /// No description provided for @androidWidgetStep4.
@@ -8515,7 +8515,7 @@ abstract class AppLocalizations {
   /// No description provided for @appName.
   ///
   /// In en, this message translates to:
-  /// **'BeeCount'**
+  /// **'WaterBook'**
   String get appName;
 
   /// No description provided for @monthSuffix.
@@ -8683,13 +8683,13 @@ abstract class AppLocalizations {
   /// No description provided for @iosAutoShortcutStep3.
   ///
   /// In en, this message translates to:
-  /// **'Search and add \"BeeCount - Auto Billing\" action'**
+  /// **'Search and add \"WaterBook - Auto Billing\" action'**
   String get iosAutoShortcutStep3;
 
   /// No description provided for @iosAutoShortcutStep4.
   ///
   /// In en, this message translates to:
-  /// **'Set the screenshot parameter of \"BeeCount\" to the previous \"Screenshot\"'**
+  /// **'Set the screenshot parameter of \"WaterBook\" to the previous \"Screenshot\"'**
   String get iosAutoShortcutStep4;
 
   /// No description provided for @iosAutoShortcutStep5.
@@ -9187,7 +9187,7 @@ abstract class AppLocalizations {
   /// No description provided for @cloudTutorialIntro.
   ///
   /// In en, this message translates to:
-  /// **'BeeCount Cloud is a self-hosted sync server that supports real-time multi-device collaboration. The flow is simple:'**
+  /// **'WaterBook Cloud is a self-hosted sync server that supports real-time multi-device collaboration. The flow is simple:'**
   String get cloudTutorialIntro;
 
   /// No description provided for @cloudTutorialStep1Title.
@@ -9199,7 +9199,7 @@ abstract class AppLocalizations {
   /// No description provided for @cloudTutorialStep1Desc.
   ///
   /// In en, this message translates to:
-  /// **'Self-host with one Docker command (see the Docker guide in GitHub README). Or join an existing BeeCount Cloud server run by a friend / team.'**
+  /// **'Self-host with one Docker command (see the Docker guide in GitHub README). Or join an existing WaterBook Cloud server run by a friend / team.'**
   String get cloudTutorialStep1Desc;
 
   /// No description provided for @cloudTutorialStep2Title.
@@ -9211,7 +9211,7 @@ abstract class AppLocalizations {
   /// No description provided for @cloudTutorialStep2Desc.
   ///
   /// In en, this message translates to:
-  /// **'BeeCount Cloud does NOT offer self-registration (to prevent abuse on public servers). If you self-host: the first Docker boot prints a random admin email + password to the logs — use that. Joining someone else\'s server: ask the admin to create an account for you in Web → Users.'**
+  /// **'WaterBook Cloud does NOT offer self-registration (to prevent abuse on public servers). If you self-host: the first Docker boot prints a random admin email + password to the logs — use that. Joining someone else\'s server: ask the admin to create an account for you in Web → Users.'**
   String get cloudTutorialStep2Desc;
 
   /// No description provided for @cloudTutorialStep3Title.
@@ -9223,7 +9223,7 @@ abstract class AppLocalizations {
   /// No description provided for @cloudTutorialStep3Desc.
   ///
   /// In en, this message translates to:
-  /// **'In the app, pick BeeCount Cloud, enter the server URL and the account you got in step 2. First login uploads your entire local ledger; every subsequent edit is pushed in real time.'**
+  /// **'In the app, pick WaterBook Cloud, enter the server URL and the account you got in step 2. First login uploads your entire local ledger; every subsequent edit is pushed in real time.'**
   String get cloudTutorialStep3Desc;
 
   /// No description provided for @cloudTutorialStep4Title.
@@ -9499,13 +9499,13 @@ abstract class AppLocalizations {
   /// No description provided for @shareBillingGuide.
   ///
   /// In en, this message translates to:
-  /// **'When you see a payment screenshot in Alipay, WeChat, Photos, etc., tap \"Share\" and choose \"BeeCount\" to auto-recognize the amount, merchant, and time and create a transaction — no need to save the screenshot first.'**
+  /// **'When you see a payment screenshot in Alipay, WeChat, Photos, etc., tap \"Share\" and choose \"WaterBook\" to auto-recognize the amount, merchant, and time and create a transaction — no need to save the screenshot first.'**
   String get shareBillingGuide;
 
   /// No description provided for @shareBillingActionHint.
   ///
   /// In en, this message translates to:
-  /// **'Recognized automatically in the background after sharing — no need to open BeeCount'**
+  /// **'Recognized automatically in the background after sharing — no need to open WaterBook'**
   String get shareBillingActionHint;
 
   /// No description provided for @automation.
@@ -9649,7 +9649,7 @@ abstract class AppLocalizations {
   /// No description provided for @aboutDeveloperStory.
   ///
   /// In en, this message translates to:
-  /// **'I started tracking my expenses in 2015 as an intern, and I\'ve kept the habit for over a decade. Concerned about ads, paywalls, privacy risks, and apps shutting down, I decided to build my own — first as a small tool for myself and my family.\n\nIn September 2025, BeeCount launched its first version. Honestly, I had no idea if anyone would use it. But gradually, feedback started coming in — someone said they finally found a clean budgeting app, others offered great suggestions, and some quietly left five-star reviews. Every single message reminded me this was worth continuing.\n\nBeeCount is ad-free, subscription-free, and fully open source. All your data stays on your device and is never uploaded to any third-party server. But publishing and maintaining an app isn\'t free — developer accounts, servers, and other costs are currently covered by community donations, and every system update, bug fix, and new feature is built outside of my day job.\n\nIf BeeCount has been helpful to you, a rating, a share, or a donation would help this little project go further. Thank you for your trust.'**
+  /// **'I started tracking my expenses in 2015 as an intern, and I\'ve kept the habit for over a decade. Concerned about ads, paywalls, privacy risks, and apps shutting down, I decided to build my own — first as a small tool for myself and my family.\n\nIn September 2025, WaterBook launched its first version. Honestly, I had no idea if anyone would use it. But gradually, feedback started coming in — someone said they finally found a clean budgeting app, others offered great suggestions, and some quietly left five-star reviews. Every single message reminded me this was worth continuing.\n\nWaterBook is ad-free, subscription-free, and fully open source. All your data stays on your device and is never uploaded to any third-party server. But publishing and maintaining an app isn\'t free — developer accounts, servers, and other costs are currently covered by community donations, and every system update, bug fix, and new feature is built outside of my day job.\n\nIf WaterBook has been helpful to you, a rating, a share, or a donation would help this little project go further. Thank you for your trust.'**
   String get aboutDeveloperStory;
 
   /// No description provided for @aboutRelatedProducts.
@@ -9673,7 +9673,7 @@ abstract class AppLocalizations {
   /// No description provided for @aboutBeeAssetsIntro.
   ///
   /// In en, this message translates to:
-  /// **'BeeCount focuses on daily cash flow; BeeAssets is its sibling product, focused on asset portfolio visualization: net worth trends across accounts, property / investment / crypto classification, returns, holding period, and allocation breakdown.'**
+  /// **'WaterBook focuses on daily cash flow; BeeAssets is its sibling product, focused on asset portfolio visualization: net worth trends across accounts, property / investment / crypto classification, returns, holding period, and allocation breakdown.'**
   String get aboutBeeAssetsIntro;
 
   /// No description provided for @aboutBeeDNS.
@@ -9895,7 +9895,7 @@ abstract class AppLocalizations {
   /// No description provided for @configExportShareSubject.
   ///
   /// In en, this message translates to:
-  /// **'BeeCount Config File'**
+  /// **'WaterBook Config File'**
   String get configExportShareSubject;
 
   /// No description provided for @configExportSuccess.
@@ -11245,7 +11245,7 @@ abstract class AppLocalizations {
   /// No description provided for @donationDescriptionDetail.
   ///
   /// In en, this message translates to:
-  /// **'Thank you for using BeeCount! If this app helps you, feel free to buy the developer a coffee as encouragement. Your support is my motivation to keep improving.'**
+  /// **'Thank you for using WaterBook! If this app helps you, feel free to buy the developer a coffee as encouragement. Your support is my motivation to keep improving.'**
   String get donationDescriptionDetail;
 
   /// No description provided for @donationNoFeatures.
@@ -11269,7 +11269,7 @@ abstract class AppLocalizations {
   /// No description provided for @donationThankYouMessage.
   ///
   /// In en, this message translates to:
-  /// **'Thank you for purchasing {productName}! Your support means a lot to me. I will continue to improve BeeCount to make it even better!'**
+  /// **'Thank you for purchasing {productName}! Your support means a lot to me. I will continue to improve WaterBook to make it even better!'**
   String donationThankYouMessage(String productName);
 
   /// No description provided for @aiQuickCommandFinancialHealthTitle.
@@ -11965,7 +11965,7 @@ abstract class AppLocalizations {
   /// No description provided for @tagShareSubject.
   ///
   /// In en, this message translates to:
-  /// **'BeeCount Tags Configuration'**
+  /// **'WaterBook Tags Configuration'**
   String get tagShareSubject;
 
   /// No description provided for @tagShareFailed.
@@ -14053,13 +14053,13 @@ abstract class AppLocalizations {
   /// No description provided for @sharedInviteInstruction.
   ///
   /// In en, this message translates to:
-  /// **'Send the code or short link to the other person. After they install BeeCount, they can tap the link or enter the code from \"Me → Join shared ledger\".'**
+  /// **'Send the code or short link to the other person. After they install WaterBook, they can tap the link or enter the code from \"Me → Join shared ledger\".'**
   String get sharedInviteInstruction;
 
   /// No description provided for @sharedInviteShareText.
   ///
   /// In en, this message translates to:
-  /// **'I\'m inviting you to BeeCount shared ledger \"{ledger}\".\n\nCode: {code}\nLink: {url}\n\nTap the link, or open BeeCount → Me → Join shared ledger and enter this code.'**
+  /// **'I\'m inviting you to WaterBook shared ledger \"{ledger}\".\n\nCode: {code}\nLink: {url}\n\nTap the link, or open WaterBook → Me → Join shared ledger and enter this code.'**
   String sharedInviteShareText(String ledger, String code, String url);
 
   /// No description provided for @sharedMembersPageTitle.
@@ -15715,7 +15715,7 @@ abstract class AppLocalizations {
   /// No description provided for @annualReportDownloadHint.
   ///
   /// In en, this message translates to:
-  /// **'Scan to download BeeCount and start bookkeeping'**
+  /// **'Scan to download WaterBook and start bookkeeping'**
   String get annualReportDownloadHint;
 
   /// No description provided for @attachmentKeepOriginal.
@@ -16099,7 +16099,7 @@ abstract class AppLocalizations {
   /// No description provided for @sharePosterAppText.
   ///
   /// In en, this message translates to:
-  /// **'BeeCount - Simple Ledger'**
+  /// **'WaterBook - Simple Ledger'**
   String get sharePosterAppText;
 
   /// No description provided for @sharePosterDefaultLedgerName.
@@ -16315,7 +16315,7 @@ abstract class AppLocalizations {
   /// No description provided for @logExportTitle.
   ///
   /// In en, this message translates to:
-  /// **'=== BeeCount log export ==='**
+  /// **'=== WaterBook log export ==='**
   String get logExportTitle;
 
   /// No description provided for @logExportTime.
@@ -16603,13 +16603,13 @@ abstract class AppLocalizations {
   /// No description provided for @v4HomeBrandShow.
   ///
   /// In en, this message translates to:
-  /// **'Show BeeCount branding'**
+  /// **'Show WaterBook branding'**
   String get v4HomeBrandShow;
 
   /// No description provided for @v4HomeBrandHide.
   ///
   /// In en, this message translates to:
-  /// **'Hide BeeCount branding'**
+  /// **'Hide WaterBook branding'**
   String get v4HomeBrandHide;
 
   /// No description provided for @v4HomeMonthExpense.
