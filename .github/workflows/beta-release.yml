@@ -1,38 +1,14 @@
 name: Beta Release
 
+# 个人分支（1.0.0）已停用本流水线：
+# 本仓库是 BeeCount 的个人自用魔改分支，不向官方应用商店/官方渠道发布，
+# 也没有上游所需的 secrets（签名、商店凭证、通知渠道），运行必然失败。
+# 它还会监听所有 tag 推送，与 personal-release.yml 的发版 tag 冲突。
+# 故改为只能被其它流水线调用（workflow_call）：Actions 页面不再出现
+# "Run workflow" 按钮，也不会被 tag 触发。恢复上游行为请取回原 on 段。
 on:
-  workflow_dispatch:
-    inputs:
-      mode:
-        description: "发布完整双端 Beta，或在完整交付后补发唯一通知"
-        type: choice
-        options: [release, notify-only]
-        required: true
-        default: release
-      source_ref:
-        description: "发布模式：v4 或其历史完整40位SHA；仅通知忽略"
-        required: true
-        default: "v4"
-      version:
-        description: "新Beta需已提交独立更新说明；仅通知填已发布版本"
-        required: true
-        default: "4.0.0-beta.6"
-      android_version_code_floor:
-        description: "全部渠道最高已交付Android code；留空读仓库变量"
-        required: false
-        default: ""
-      ios_delivery:
-        description: "默认签名IPA并完成Apple TestFlight处理；或仅归档签名IPA"
-        type: choice
-        options: [testflight, ipa]
-        required: true
-        default: testflight
-      ios_build_number:
-        description: "留空与Android code一致；仅Apple需要更高build时填写"
-        required: false
-        default: ""
+  workflow_call:
 
-# 与正式版共用串行锁。两端候选留在同一私有Runner，全部成功才公开。
 concurrency:
   group: beecount-android-delivery
   cancel-in-progress: false

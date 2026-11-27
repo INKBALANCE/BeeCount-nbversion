@@ -1,38 +1,14 @@
 name: Release
 
+# 个人分支（1.0.0）已停用本流水线：
+# 本仓库是 BeeCount 的个人自用魔改分支，不向官方应用商店/官方渠道发布，
+# 也没有上游所需的 secrets（签名、商店凭证、通知渠道），运行必然失败。
+# 它还会监听所有 tag 推送，与 personal-release.yml 的发版 tag 冲突。
+# 故改为只能被其它流水线调用（workflow_call）：Actions 页面不再出现
+# "Run workflow" 按钮，也不会被 tag 触发。恢复上游行为请取回原 on 段。
 on:
-  push:
-    tags:
-      - "*"
-      - "!*-beta.*"
-  workflow_dispatch:
-    inputs:
-      official_skins:
-        description: "在 iOS App Store 包中接入官方付费皮肤"
-        type: boolean
-        default: false
-      tag_name:
-        description: "Release tag (手动运行可自定义，留空则使用 manual-<short_sha>)"
-        required: false
-        default: ""
-      release_name:
-        description: "Release 名称（可选，默认与 tag 相同）"
-        required: false
-        default: ""
-      prerelease:
-        description: "是否标记为 Pre-release（手动运行默认 true）"
-        required: false
-        default: "false"
-      create_release:
-        description: "是否创建 GitHub Release（手动运行可设为 false，仅构建与产出 Actions Artifacts）"
-        required: false
-        default: "true"
-      android_version_code_floor:
-        description: "所有已交付正式版/Beta的最高Android versionCode；留空使用仓库变量ANDROID_VERSION_CODE_FLOOR，均空则拒绝构建"
-        required: false
-        default: ""
+  workflow_call:
 
-# 与独立 Beta 共用串行水位；发布不相互取消。
 concurrency:
   group: beecount-android-delivery
   cancel-in-progress: false

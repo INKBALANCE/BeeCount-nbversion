@@ -63,6 +63,37 @@ version: 1.0.1+10001
 > 应用内"检查更新"是拿这个值和 Release 的 tag 比大小的，写成非版本号
 > （比如 `personal`）会让更新提示永久失效，且不会有任何报错。
 
+### 4.1 仓库必须做的两项设置（一次性）
+
+**① 默认分支改为 `1.0.0`**
+
+Settings → General → Default branch → 切到 `1.0.0`。
+
+这不是偏好问题，是硬限制：GitHub 规定 `workflow_dispatch`（Action 页面上的
+"Run workflow" 按钮）**只对默认分支上存在的流水线文件生效**。
+`personal-release.yml` 只在 `1.0.0` 上，默认分支若是 `main`，
+Actions 侧边栏根本不会出现 "Personal Release"，也就没法手动发版。
+
+改完之后侧边栏里旧的 "Personal APK" 会自动消失（该文件在 `1.0.0` 上已删除），
+"Release" / "Beta Release" 也会消失（`on` 已改成 `workflow_call`，无法手动触发）。
+
+**② Secrets 保持 4 个**
+
+`ANDROID_KEYSTORE_BASE64` / `ANDROID_KEYSTORE_PASSWORD` /
+`ANDROID_KEY_ALIAS`（值 `beecount`）/ `ANDROID_KEY_PASSWORD`。
+
+`dry_run` 勾选时不上传 Release，但**仍需要 keystore**（否则构建出的包签名不对，
+装了会丢数据），所以 Secrets 不能省。
+
+### 4.2 上游流水线的处理
+
+`release.yml`、`beta-release.yml` 在本分支已改为 `on: workflow_call`，
+即：不出现在 "Run workflow" 里，也不会被 tag 推送触发。
+
+原因：`release.yml` 原本监听所有 tag，`personal-release.yml` 每次发版都会推
+`v1.0.1` 这类 tag，必然连锁触发它，然后卡在 "Reject Beta and check stable source"
+（它只在 `main` 分支、且需要上游商店凭证才能跑）——每次发版多一个红色失败。
+
 
 ## 5. 红线（违反任何一条都可能丢数据或污染上游）
 
