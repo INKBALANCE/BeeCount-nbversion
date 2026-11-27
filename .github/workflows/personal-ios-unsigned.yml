@@ -2,13 +2,12 @@ name: Personal iOS (unsigned)
 
 # 个人自用 iOS 包：只做“能编译出未签名 IPA”，不涉及任何证书。
 # 产物用 AltStore / SideStore / Sideloadly 在本机自签名安装。
-# 触发方式：Actions 页面手动运行，或 push 到 1.0.0 分支，或打 v* tag（与 Android 发版同步）。
+# 触发方式：只能在 Actions 页面手动运行（Branch 选 1.0.0）。
 
+# 仅手动触发。不挂 push：每次往 1.0.0 提交都跑一次 macOS 构建毫无意义
+# （单次 30 分钟以上，且 iOS 侧尚未在真机验证过，必失败）。
 on:
   workflow_dispatch:
-  push:
-    branches: [1.0.0]
-    tags: ['p*']
 
 env:
   FLUTTER_VERSION: '3.27.3'
