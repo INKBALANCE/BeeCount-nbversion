@@ -104,6 +104,10 @@ class _ReminderSettingsPageState extends ConsumerState<ReminderSettingsPage> {
                         .read(reminderSettingsProvider.notifier)
                         .updateEnabled(v)),
                 onTime: _busy ? null : () => _run(_time)),
+            const SizedBox(height: 8),
+            Text(l.recurringReminderNote,
+                style: TextStyle(
+                    fontSize: 12, color: Theme.of(context).hintColor)),
             action(l.reminderTestNotification, () async {
               final notifications = ref.read(reminderNotificationsProvider);
               await notifications.showNotification(

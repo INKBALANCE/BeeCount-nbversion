@@ -9734,4 +9734,36 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cloudRecurringSyncFirst => 'Sync this ledger before transferring its rules.';
+
+  @override
+  String get recurringWorkdayRule => 'Working-day rule';
+
+  @override
+  String get recurringWorkdayNone => 'No adjustment';
+
+  @override
+  String get recurringWorkdaySkip => 'Skip non-working days';
+
+  @override
+  String get recurringWorkdayShift => 'Move to next working day';
+
+  @override
+  String get recurringWorkdayFootnote => 'Based on China\'s public holidays and make-up workdays; make-up workdays count as working days.';
+
+  @override
+  String get recurringPreviewShifted => 'Shifted';
+
+  @override
+  String get recurringWorkdayTagSkip => 'workdays only';
+
+  @override
+  String get recurringWorkdayTagShift => 'shifts on holidays';
+
+  @override
+  String reminderStatusOn(Object time) {
+    return 'Daily $time · On';
+  }
+
+  @override
+  String get recurringReminderNote => 'Recurring bills are generated when you open the app. Turn on the daily reminder so you never miss a new entry.';
 }

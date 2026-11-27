@@ -4805,7 +4805,9 @@
   "v4HomeSummaryStyleOption": "{style} summary",
   "@v4HomeSummaryStyleOption": {
     "placeholders": {
-      "style": { "type": "String" }
+      "style": {
+        "type": "String"
+      }
     }
   },
   "v4HomeSummaryFullDescription": "Emphasizes spending above income, balance, and budget",
@@ -5037,5 +5039,15 @@
   "cloudRecurringDraftChanges": "Changes in your draft",
   "cloudRecurringWeekDay": "Day of week",
   "cloudRecurringYearMonth": "Month",
-  "cloudRecurringSyncFirst": "Sync this ledger before transferring its rules."
+  "cloudRecurringSyncFirst": "Sync this ledger before transferring its rules.",
+  "recurringWorkdayRule": "Working-day rule",
+  "recurringWorkdayNone": "No adjustment",
+  "recurringWorkdaySkip": "Skip non-working days",
+  "recurringWorkdayShift": "Move to next working day",
+  "recurringWorkdayFootnote": "Based on China's public holidays and make-up workdays; make-up workdays count as working days.",
+  "recurringPreviewShifted": "Shifted",
+  "recurringWorkdayTagSkip": "workdays only",
+  "recurringWorkdayTagShift": "shifts on holidays",
+  "reminderStatusOn": "Daily {time} · On",
+  "recurringReminderNote": "Recurring bills are generated when you open the app. Turn on the daily reminder so you never miss a new entry."
 }

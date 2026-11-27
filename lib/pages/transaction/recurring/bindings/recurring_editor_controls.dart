@@ -41,6 +41,14 @@ String recurringEditorIntervalLabel(
       RecurringFrequency.yearly => l.recurringTransactionEveryNYears(interval),
     };
 
+String recurringEditorWorkdayModeLabel(
+        AppLocalizations l, WorkdayMode value) =>
+    switch (value) {
+      WorkdayMode.none => l.recurringWorkdayNone,
+      WorkdayMode.skip => l.recurringWorkdaySkip,
+      WorkdayMode.shift => l.recurringWorkdayShift,
+    };
+
 class RecurringEditorControls extends ConsumerStatefulWidget {
   const RecurringEditorControls({super.key, this.recurring});
   final RecurringTransaction? recurring;
@@ -68,6 +76,7 @@ class _RecurringEditorControlsState
       endDate: _endDate,
       lastGeneratedDate: effectiveLast,
       enabled: _enabled,
+      workdayMode: _workdayMode,
     );
 
     if (!_enabled) {
@@ -103,6 +112,15 @@ class _RecurringEditorControlsState
             whenText = l.v4RecurringPreviewInDays(occ.daysFromToday);
           }
 
+          if (occ.adjustedForWorkday) {
+            return BeeRecurringPreviewItem(
+              index: i + 1,
+              dateText: dateText,
+              weekdayText: weekdayText,
+              badgeText: l.recurringPreviewShifted,
+              badgeTone: BeeRecurringPreviewBadgeTone.warning,
+            );
+          }
           if (occ.adjustedForMonthEnd) {
             return BeeRecurringPreviewItem(
               index: i + 1,
@@ -133,6 +151,8 @@ class _RecurringEditorControlsState
       footnote = l.v4RecurringPreviewPreservedNote(
         DateFormat('yyyy/MM/dd').format(effectiveLast),
       );
+    } else if (_workdayMode != WorkdayMode.none) {
+      footnote = l.recurringWorkdayFootnote;
     } else if (_frequency == RecurringFrequency.monthly &&
         (effectiveDayOfMonth ?? 1) >= 29) {
       footnote = l.v4RecurringPreviewMonthEndNote(effectiveDayOfMonth!);
@@ -232,6 +252,11 @@ class _RecurringEditorControlsState
           onSelect: () => _selectDate(context, false),
           onClear:
               _endDate == null ? null : () => setState(() => _endDate = null)),
+      BeeRecurringEditorField.workdayMode: BeeRecurringEditorValue(
+          label: l.recurringWorkdayRule,
+          value: recurringEditorWorkdayModeLabel(l, _workdayMode),
+          icon: 'CalendarRange',
+          onSelect: _pickWorkdayMode),
     };
     return RecurringEditorScaffold(
       editing: _isEditing,

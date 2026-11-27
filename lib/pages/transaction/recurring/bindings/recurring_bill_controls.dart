@@ -156,6 +156,21 @@ String recurringScheduleLabel(
   String localeName,
 ) {
   final freq = recurringFrequencyLabel(l, recurring);
+  final base = _recurringBaseScheduleLabel(l, recurring, localeName, freq);
+  // 工作日规则作为后缀拼在调度描述之后，列表里一眼能看出与普通规则的区别
+  return switch (WorkdayMode.fromString(recurring.workdayMode)) {
+    WorkdayMode.none => base,
+    WorkdayMode.skip => '$base · ${l.recurringWorkdayTagSkip}',
+    WorkdayMode.shift => '$base · ${l.recurringWorkdayTagShift}',
+  };
+}
+
+String _recurringBaseScheduleLabel(
+  AppLocalizations l,
+  RecurringTransaction recurring,
+  String localeName,
+  String freq,
+) {
   return switch (RecurringFrequency.fromString(recurring.frequency)) {
     RecurringFrequency.daily => freq,
     RecurringFrequency.monthly => l.v4RecurringMonthlyOnDay(

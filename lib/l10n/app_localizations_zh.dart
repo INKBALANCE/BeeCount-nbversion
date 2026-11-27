@@ -9696,6 +9696,38 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get cloudRecurringSyncFirst => '请先完成账本同步再交接。';
+
+  @override
+  String get recurringWorkdayRule => '工作日规则';
+
+  @override
+  String get recurringWorkdayNone => '不处理';
+
+  @override
+  String get recurringWorkdaySkip => '跳过非工作日';
+
+  @override
+  String get recurringWorkdayShift => '顺延到工作日';
+
+  @override
+  String get recurringWorkdayFootnote => '按中国法定节假日与调休安排判断，调休上班日按工作日计。';
+
+  @override
+  String get recurringPreviewShifted => '顺延';
+
+  @override
+  String get recurringWorkdayTagSkip => '仅工作日';
+
+  @override
+  String get recurringWorkdayTagShift => '遇节假日顺延';
+
+  @override
+  String reminderStatusOn(Object time) {
+    return '每天 $time · 已开启';
+  }
+
+  @override
+  String get recurringReminderNote => '周期账单会在打开应用时自动补齐。开启每日提醒，新的账单不会漏看。';
 }
 
 /// The translations for Chinese, as used in Taiwan (`zh_TW`).
@@ -19222,4 +19254,36 @@ class AppLocalizationsZhTw extends AppLocalizationsZh {
 
   @override
   String get cloudRecurringSyncFirst => '請先完成帳本同步再交接。';
+
+  @override
+  String get recurringWorkdayRule => '工作日規則';
+
+  @override
+  String get recurringWorkdayNone => '不處理';
+
+  @override
+  String get recurringWorkdaySkip => '跳過非工作日';
+
+  @override
+  String get recurringWorkdayShift => '順延到工作日';
+
+  @override
+  String get recurringWorkdayFootnote => '按中國法定節假日與調休安排判斷，調休上班日按工作日計。';
+
+  @override
+  String get recurringPreviewShifted => '順延';
+
+  @override
+  String get recurringWorkdayTagSkip => '僅工作日';
+
+  @override
+  String get recurringWorkdayTagShift => '遇節假日順延';
+
+  @override
+  String reminderStatusOn(Object time) {
+    return '每天 $time · 已開啟';
+  }
+
+  @override
+  String get recurringReminderNote => '週期帳單會在開啟應用時自動補齊。開啟每日提醒，新的帳單不會漏看。';
 }

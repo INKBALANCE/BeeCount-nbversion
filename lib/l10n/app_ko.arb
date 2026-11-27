@@ -219,7 +219,9 @@
   "categoryGenerateDefaultSuccess": "기본 카테고리 {count}개를 생성했습니다",
   "@categoryGenerateDefaultSuccess": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "categoryGenerateDefaultNoChanges": "기본 카테고리가 이미 있습니다",
@@ -2178,5 +2180,15 @@
   "v4RecurringAutomatic": "자동 기록",
   "v4RecurringNextCaption": "다음 기록 · {when}",
   "v4RecurringUsageSummary": "앱을 열거나 돌아오면 예정된 거래가 자동으로 기록됩니다. 규칙을 눌러 일정을 수정하세요.",
-  "v4RecurringPreviewTitle": "예정된 기록 날짜"
+  "v4RecurringPreviewTitle": "예정된 기록 날짜",
+  "recurringWorkdayRule": "근무일 규칙",
+  "recurringWorkdayNone": "조정 없음",
+  "recurringWorkdaySkip": "비근무일 건너뛰기",
+  "recurringWorkdayShift": "다음 근무일로 연기",
+  "recurringWorkdayFootnote": "중국 법정 공휴일과 대체 근무일을 기준으로 하며, 대체 근무일은 근무일로 계산합니다.",
+  "recurringPreviewShifted": "연기됨",
+  "recurringWorkdayTagSkip": "근무일만",
+  "recurringWorkdayTagShift": "공휴일 연기",
+  "reminderStatusOn": "매일 {time} · 켜짐",
+  "recurringReminderNote": "반복 청구서는 앱을 열 때 자동으로 생성됩니다. 매일 알림을 켜면 새 내역을 놓치지 않습니다."
 }

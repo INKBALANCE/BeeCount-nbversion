@@ -12,6 +12,9 @@ enum BeeRecurringEditorField {
   dayOfMonth,
   startDate,
   endDate,
+
+  /// 工作日规则（跳过非工作日 / 顺延到工作日）
+  workdayMode,
 }
 
 enum BeeRecurringPreviewBadgeTone { neutral, highlight, warning }
@@ -149,6 +152,7 @@ class BeeRecurringEditorForm extends StatelessWidget {
           if (showDayOfMonth) BeeRecurringEditorField.dayOfMonth,
           BeeRecurringEditorField.startDate,
           BeeRecurringEditorField.endDate,
+          BeeRecurringEditorField.workdayMode,
         ],
         footer: schedulePreview == null
             ? null

@@ -2939,5 +2939,15 @@
   "v4RecurringAmountTransfer": "На один перевод",
   "v4RecurringAutomatic": "Автоматический учёт",
   "v4RecurringNextCaption": "Следующая транзакция · {when}",
-  "v4RecurringUsageSummary": "Транзакции с наступившей датой добавляются при открытии приложения или возвращении в него. Нажмите на правило, чтобы изменить расписание."
+  "v4RecurringUsageSummary": "Транзакции с наступившей датой добавляются при открытии приложения или возвращении в него. Нажмите на правило, чтобы изменить расписание.",
+  "recurringWorkdayRule": "Правило рабочих дней",
+  "recurringWorkdayNone": "Без корректировки",
+  "recurringWorkdaySkip": "Пропускать нерабочие дни",
+  "recurringWorkdayShift": "Переносить на рабочий день",
+  "recurringWorkdayFootnote": "Учитываются официальные праздники Китая и переносы; компенсационные рабочие дни считаются рабочими.",
+  "recurringPreviewShifted": "Перенесено",
+  "recurringWorkdayTagSkip": "только рабочие дни",
+  "recurringWorkdayTagShift": "перенос в праздники",
+  "reminderStatusOn": "Ежедневно {time} · включено",
+  "recurringReminderNote": "Регулярные счета создаются при открытии приложения. Включите ежедневное напоминание, чтобы не пропустить новые записи."
 }

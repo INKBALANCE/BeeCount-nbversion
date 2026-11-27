@@ -10188,4 +10188,36 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get cloudRecurringSyncFirst => 'Sync this ledger before transferring its rules.';
+
+  @override
+  String get recurringWorkdayRule => 'Правило рабочих дней';
+
+  @override
+  String get recurringWorkdayNone => 'Без корректировки';
+
+  @override
+  String get recurringWorkdaySkip => 'Пропускать нерабочие дни';
+
+  @override
+  String get recurringWorkdayShift => 'Переносить на рабочий день';
+
+  @override
+  String get recurringWorkdayFootnote => 'Учитываются официальные праздники Китая и переносы; компенсационные рабочие дни считаются рабочими.';
+
+  @override
+  String get recurringPreviewShifted => 'Перенесено';
+
+  @override
+  String get recurringWorkdayTagSkip => 'только рабочие дни';
+
+  @override
+  String get recurringWorkdayTagShift => 'перенос в праздники';
+
+  @override
+  String reminderStatusOn(Object time) {
+    return 'Ежедневно $time · включено';
+  }
+
+  @override
+  String get recurringReminderNote => 'Регулярные счета создаются при открытии приложения. Включите ежедневное напоминание, чтобы не пропустить новые записи.';
 }

@@ -18225,6 +18225,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sync this ledger before transferring its rules.'**
   String get cloudRecurringSyncFirst;
+
+  /// No description provided for @recurringWorkdayRule.
+  ///
+  /// In en, this message translates to:
+  /// **'Working-day rule'**
+  String get recurringWorkdayRule;
+
+  /// No description provided for @recurringWorkdayNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No adjustment'**
+  String get recurringWorkdayNone;
+
+  /// No description provided for @recurringWorkdaySkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip non-working days'**
+  String get recurringWorkdaySkip;
+
+  /// No description provided for @recurringWorkdayShift.
+  ///
+  /// In en, this message translates to:
+  /// **'Move to next working day'**
+  String get recurringWorkdayShift;
+
+  /// No description provided for @recurringWorkdayFootnote.
+  ///
+  /// In en, this message translates to:
+  /// **'Based on China\'s public holidays and make-up workdays; make-up workdays count as working days.'**
+  String get recurringWorkdayFootnote;
+
+  /// No description provided for @recurringPreviewShifted.
+  ///
+  /// In en, this message translates to:
+  /// **'Shifted'**
+  String get recurringPreviewShifted;
+
+  /// No description provided for @recurringWorkdayTagSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'workdays only'**
+  String get recurringWorkdayTagSkip;
+
+  /// No description provided for @recurringWorkdayTagShift.
+  ///
+  /// In en, this message translates to:
+  /// **'shifts on holidays'**
+  String get recurringWorkdayTagShift;
+
+  /// No description provided for @reminderStatusOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily {time} · On'**
+  String reminderStatusOn(Object time);
+
+  /// No description provided for @recurringReminderNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Recurring bills are generated when you open the app. Turn on the daily reminder so you never miss a new entry.'**
+  String get recurringReminderNote;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

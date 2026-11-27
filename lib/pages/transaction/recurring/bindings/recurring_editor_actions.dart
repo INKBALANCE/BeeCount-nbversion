@@ -10,6 +10,7 @@ mixin _RecurringEditorActions on ConsumerState<RecurringEditorControls> {
   late DateTime _startDate;
   DateTime? _endDate;
   int? _dayOfMonth;
+  WorkdayMode _workdayMode = WorkdayMode.none;
   Category? _selectedCategory;
   int? _selectedAccountId, _selectedToAccountId, _selectedLedgerId;
   late bool _enabled;
@@ -50,6 +51,7 @@ mixin _RecurringEditorActions on ConsumerState<RecurringEditorControls> {
     _dayOfMonth = _frequency == RecurringFrequency.monthly
         ? (rule == null ? today.day : (rule.dayOfMonth ?? _startDate.day))
         : null;
+    _workdayMode = WorkdayMode.fromString(rule?.workdayMode);
     _selectedAccountId = rule?.accountId;
     _selectedToAccountId = rule?.toAccountId;
     _enabled = rule?.enabled ?? true;
@@ -162,6 +164,16 @@ mixin _RecurringEditorActions on ConsumerState<RecurringEditorControls> {
             recurringEditorIntervalLabel(l, _frequency, value),
         title: l.recurringTransactionInterval);
     if (result != null && mounted) setState(() => _interval = result);
+  }
+
+  Future<void> _pickWorkdayMode() async {
+    final l = AppLocalizations.of(context);
+    final result = await showRecurringEditorWheel<WorkdayMode>(context,
+        initial: _workdayMode,
+        items: WorkdayMode.values,
+        labelBuilder: (value) => recurringEditorWorkdayModeLabel(l, value),
+        title: l.recurringWorkdayRule);
+    if (result != null && mounted) setState(() => _workdayMode = result);
   }
 
   Future<void> _pickDayOfMonth() async {
@@ -450,6 +462,7 @@ mixin _RecurringEditorActions on ConsumerState<RecurringEditorControls> {
           lastGeneratedDate: null,
           updateLastGeneratedDate: shouldResetCursor,
           currencyCode: _currencyCode,
+          workdayMode: _workdayMode.value,
         );
       } else {
         await repo.addRecurringTransaction(
@@ -468,6 +481,7 @@ mixin _RecurringEditorActions on ConsumerState<RecurringEditorControls> {
           startDate: normalizedStart,
           endDate: normalizedEnd,
           currencyCode: _currencyCode,
+          workdayMode: _workdayMode.value,
         );
       }
 

@@ -4475,5 +4475,15 @@
   "cloudRecurringDraftChanges": "草稿中修改的字段",
   "cloudRecurringWeekDay": "每周星期几",
   "cloudRecurringYearMonth": "每年第几月",
-  "cloudRecurringSyncFirst": "请先完成账本同步再交接。"
+  "cloudRecurringSyncFirst": "请先完成账本同步再交接。",
+  "recurringWorkdayRule": "工作日规则",
+  "recurringWorkdayNone": "不处理",
+  "recurringWorkdaySkip": "跳过非工作日",
+  "recurringWorkdayShift": "顺延到工作日",
+  "recurringWorkdayFootnote": "按中国法定节假日与调休安排判断，调休上班日按工作日计。",
+  "recurringPreviewShifted": "顺延",
+  "recurringWorkdayTagSkip": "仅工作日",
+  "recurringWorkdayTagShift": "遇节假日顺延",
+  "reminderStatusOn": "每天 {time} · 已开启",
+  "recurringReminderNote": "周期账单会在打开应用时自动补齐。开启每日提醒，新的账单不会漏看。"
 }

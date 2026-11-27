@@ -9734,4 +9734,36 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get cloudRecurringSyncFirst => 'Sync this ledger before transferring its rules.';
+
+  @override
+  String get recurringWorkdayRule => '근무일 규칙';
+
+  @override
+  String get recurringWorkdayNone => '조정 없음';
+
+  @override
+  String get recurringWorkdaySkip => '비근무일 건너뛰기';
+
+  @override
+  String get recurringWorkdayShift => '다음 근무일로 연기';
+
+  @override
+  String get recurringWorkdayFootnote => '중국 법정 공휴일과 대체 근무일을 기준으로 하며, 대체 근무일은 근무일로 계산합니다.';
+
+  @override
+  String get recurringPreviewShifted => '연기됨';
+
+  @override
+  String get recurringWorkdayTagSkip => '근무일만';
+
+  @override
+  String get recurringWorkdayTagShift => '공휴일 연기';
+
+  @override
+  String reminderStatusOn(Object time) {
+    return '매일 $time · 켜짐';
+  }
+
+  @override
+  String get recurringReminderNote => '반복 청구서는 앱을 열 때 자동으로 생성됩니다. 매일 알림을 켜면 새 내역을 놓치지 않습니다.';
 }
